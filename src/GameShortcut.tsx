@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './GameShortcut.css';
+import './styles/GameShortcut.css';
 export function GameShortcut({
   price,
   name,

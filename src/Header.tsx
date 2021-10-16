@@ -1,4 +1,4 @@
-import './Header.css';
+import './styles/Header.css';
 export function Header() {
   return <div id='header'>
       <h2>Гамбургер</h2>

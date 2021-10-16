@@ -1,5 +1,5 @@
 import { GameShortcut } from './GameShortcut';
-import './GamesList.css';
+import './styles/GamesList.css';
 interface gameRecord {
   name: string;
   key?: number;

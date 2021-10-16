@@ -1,4 +1,4 @@
-import './Jumper.css';
+import './styles/Jumper.css';
 export function Jumper() {
   return (
     <div

@@ -1,5 +1,5 @@
 import { shallow, ShallowWrapper } from 'enzyme';
-import { GameShortcut } from './GameShortcut';
+import { GameShortcut } from '../GameShortcut';
 describe('Header test', () => {
   let shortcut: ShallowWrapper;
   const name = 'name';
