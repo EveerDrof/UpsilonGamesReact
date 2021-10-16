@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.carouselImage{
+  width: 100%;
+}
+.carouselElement{
+  height: 50vh;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h1,h2,h3,h4{
+  color: white;
+}
+body{
+  background-color: slategrey;
+}
+.carouselButton{
+  margin-top: 30vh;
+  background-color: slategrey;
+  border-radius: 20px;
+  border: none;
+  height: 10vh;
+  font-size: 5vh;
+  color: white;
+  cursor: pointer;
+}
