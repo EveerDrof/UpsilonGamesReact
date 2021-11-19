@@ -1,5 +1,5 @@
 import { shallow, ShallowWrapper } from 'enzyme';
-import { GamesList } from './GamesList';
+import { GamesList } from '../GamesList';
 describe('Header test', () => {
   const gamesRecords = [
     {

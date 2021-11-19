@@ -4,10 +4,14 @@
     background-color: rgb(77, 82, 87);
     border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .gameShortcutImage{
     height: auto;
     width: 100%;
+    margin: auto;
 }
 h4{
     margin-top: 0.3vh;

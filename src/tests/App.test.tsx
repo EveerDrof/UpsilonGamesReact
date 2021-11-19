@@ -1,4 +1,4 @@
-import App from './App';
+import App from '../App';
 import { ReactWrapper,mount, shallow, ShallowWrapper } from 'enzyme';
 describe('Home page top view test', () => {
   let app: ShallowWrapper;
