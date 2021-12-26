@@ -1,0 +1,14 @@
+#login-register-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-be;
+    text-align: center;
+    height: 92vh;
+    background-color: white;
+}
+#left-picure{
+    height: 100%;
+    flex-basis: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

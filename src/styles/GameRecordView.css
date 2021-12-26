@@ -1,0 +1,14 @@
+.screenshot{
+    height: 60vh;
+    width: auto !important; 
+
+}
+.thumb .screenshot {
+    max-width: 100%; 
+    max-height: 100%;
+    object-fit: cover;
+}
+.thumb{
+    height: 15vh !important;
+    width: auto;
+}
