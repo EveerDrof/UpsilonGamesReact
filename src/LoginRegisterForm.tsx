@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CabinetView } from "./CabinetView";
-import { usersGetLoggedUserDataUrl, usersRegisterUrl } from "./constants";
+import { authGetHeader, usersGetLoggedUserDataUrl, usersRegisterUrl } from "./constants";
 import "./styles/LoginRegisterForm.css";
 export function LoginRegisterForm({ setCurrentView }: { setCurrentView: Function }) {
     function onBtnFormSwtiecherClick(event: any) {
@@ -9,6 +9,28 @@ export function LoginRegisterForm({ setCurrentView }: { setCurrentView: Function
         } else {
             setFormType('login');
         }
+    }
+    function fetchUserDataAndSetLocalStorage(name: string, password: string) {
+        localStorage.setItem('name', name);
+        localStorage.setItem('password', password);
+        fetch(usersGetLoggedUserDataUrl, {
+            method: 'GET',
+            headers: authGetHeader()
+        }).then(
+            response => {
+                if (response.status == 200) {
+                    
+                    setCurrentView(<CabinetView />);
+                } else {
+                    localStorage.removeItem('name');
+                    localStorage.removeItem('password');
+                    alert('Wrong user name or password');
+                }
+                return response.json();
+            }
+        ).then(json => {
+            localStorage.setItem('userId', json.id);
+        });
     }
     function sendCredentialsToServer() {
         let name = (document.getElementById('nameInput') as HTMLInputElement).value;
@@ -26,27 +48,11 @@ export function LoginRegisterForm({ setCurrentView }: { setCurrentView: Function
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => {
                 if (response.status == 201) {
-                    localStorage.setItem('name', name);
-                    localStorage.setItem('password', password);
-                    setCurrentView(<CabinetView />);
+                    fetchUserDataAndSetLocalStorage(name, password);
                 }
-            })
+            });
         } else {
-            fetch(usersGetLoggedUserDataUrl, {
-                method: 'GET',
-                headers: { 'Authorization': 'Basic ' + btoa(`${name}:${password}`) }
-            }).then(
-                response => {
-                    if (response.status == 200) {
-                        localStorage.setItem('name', name);
-                        localStorage.setItem('password', password);
-                        setCurrentView(<CabinetView />);
-                    } else {
-                        alert('Wrong user name or password');
-                    }
-                }
-            )
-
+            fetchUserDataAndSetLocalStorage(name,password);
         }
     }
     const [formType, setFormType]: [string, Function] = useState('login');

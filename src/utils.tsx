@@ -5,3 +5,11 @@ export interface GameRecord {
     price: number;
     imageBlob: string;
 };
+export interface FullGameRecord {
+    name: string;
+    id: number;
+    description: string;
+    averageMark: number;
+    price: number;
+    imageBlob: string;
+};

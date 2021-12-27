@@ -1,14 +1,75 @@
+#screenshots-carousel{
+
+}
+
 .screenshot{
     height: 60vh;
     width: auto !important; 
 
 }
-.thumb .screenshot {
+
+#screenshots-carousel .thumb .screenshot {
     max-width: 100%; 
     max-height: 100%;
     object-fit: cover;
 }
-.thumb{
+#screenshots-carousel .thumb{
     height: 15vh !important;
     width: auto;
+}
+#screenshots-carousel .carousel-root,#screenshots-carouse .carousel.carousel-slider{
+    height: auto;
+    width: auto;
+    object-fit: cover;
+    max-width: 70vw; 
+    max-height: 80vh;
+}
+#screenshots-carousel .carousel .slider-wrapper{
+    margin: 0px;
+    padding: 0px;
+}
+#top-info{
+    display: flex;
+    flex-direction: row;
+}
+#right-info-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+#buy-btn{
+    background-color: red;
+    border: none;
+    border-radius: 20px;
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
+}
+#description{
+    background-color: tan;
+    border-radius: 20px;
+    padding: 10px;
+}
+#mark-circle-bar{
+    height: 100px;
+    width: 100px;
+}
+#mark-setter-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#mark-setter-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 500px;
+}
+#mark-setter-button{
+    display: flex;
+}
+.mark-slider-setter{
+    width: 300px;
+    height: 10px;
 }
