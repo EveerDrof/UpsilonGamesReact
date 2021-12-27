@@ -13,3 +13,11 @@ export interface FullGameRecord {
     price: number;
     imageBlob: string;
 };
+export interface User{
+    id: number,
+    name: string
+}
+export interface Review{
+    reviewText:string,
+    userId:User
+}

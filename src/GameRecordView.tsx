@@ -7,6 +7,7 @@ import './styles/App.css'
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { ReviewsSection } from "./ReviewsSection";
 
 export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
     const [screeshotsBlobs, setScreeshotsBlobs]: [string[], Function] = useState([]);
@@ -75,45 +76,51 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
     }
 
     return (
-        <div id='top-info'>
-            <div id='screenshots-carousel'>
-                <Carousel verticalSwipe='natural' dynamicHeight={false}>{screenshotsCarouselItems}</Carousel>
-            </div>
-            <div id='right-info-column'>
-                <h1>{gameRecord.name}</h1>
-                <h1>Price : {gameRecord.price}</h1>
-                <button id="buy-btn">Buy</button>
-                <div id='mark-circle-bar'>
+        <div>
+            <div id='top-info'>
+                <div id='screenshots-carousel'>
+                    <Carousel verticalSwipe='natural' dynamicHeight={false}>{screenshotsCarouselItems}</Carousel>
+                </div>
+                <div id='right-info-column'>
+                    <h1>{gameRecord.name}</h1>
+                    <h1>Price : {gameRecord.price}</h1>
+                    <button id="buy-btn">Buy</button>
+                    <div id='mark-circle-bar'>
+                        {longGameData ?
+                            <CircularProgressbar value={longGameData!.averageMark} maxValue={100} text={`${longGameData!.averageMark}`} />
+                            :
+                            <></>
+                        }
+
+                    </div>
                     {longGameData ?
-                        <CircularProgressbar value={longGameData!.averageMark} maxValue={100} text={`${longGameData!.averageMark}`} />
+                        <p id='description'>Description : <br /> {longGameData.description}</p>
+                        : <></>
+                    }
+
+                    {localStorage.getItem('password') ?
+                        <div>
+                            <h1>{fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}</h1>
+                            <div id='mark-setter-column'>
+                                <div id='mark-setter-line'>
+                                    <input type={'range'} onChange={(val) => {
+                                        userMark = parseInt(val.target.value);
+                                        document.getElementById('user-mark-text')!.innerHTML = '' + userMark;
+                                    }} />
+                                    <h1 id='user-mark-text'>{userMark}</h1>
+                                </div>
+                                <button id='mark-setter-button' onClick={() => { sendMarkToServer(userMark); }}>Upload mark</button>
+                            </div>
+                        </div>
                         :
                         <></>
                     }
-
                 </div>
-                {longGameData ?
-                    <p id='description'>Description : <br /> {longGameData.description}</p>
-                    : <></>
-                }
-
-                {localStorage.getItem('password') ?
-                    <div>
-                        <h1>{fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}</h1>
-                        <div id='mark-setter-column'>
-                            <div id='mark-setter-line'>
-                                <input type={'range'} onChange={(val) => {
-                                    userMark = parseInt(val.target.value);
-                                    document.getElementById('user-mark-text')!.innerHTML = '' + userMark;
-                                }} />
-                                <h1 id='user-mark-text'>{userMark}</h1>
-                            </div>
-                            <button id='mark-setter-button' onClick={() => { sendMarkToServer(userMark); }}>Upload mark</button>
-                        </div>
-                    </div>
-                    :
-                    <></>
-                }
-            </div>
-        </div >
+            </div >
+            {longGameData ?
+                <ReviewsSection gameName={longGameData.name} />
+                :
+                <></>}
+        </div>
     );
 }

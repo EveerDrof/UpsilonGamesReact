@@ -1,0 +1,17 @@
+#review-adding-btn{
+    background-color: greenyellow;
+    border-radius: 30px;
+    height: 10vh;
+    width: 10vh;
+    font-size: 7vh;
+    border-width: 0;
+    cursor: pointer;
+    transition: 100ms;
+}
+#review-adding-btn:active{
+    background-color: yellow;
+    border: 5px solid teal;
+}
+#review-text-area{
+    
+}
