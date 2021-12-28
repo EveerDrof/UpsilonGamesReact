@@ -19,5 +19,12 @@ export interface User{
 }
 export interface Review{
     reviewText:string,
-    userId:User
+    userId:User,
+    id:number,
+    dislikesNumber:number,
+    likesNumber:number
+}
+export interface Vote{
+    id:number,
+    vote:boolean
 }

@@ -1,0 +1,22 @@
+.header-line{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.review-header{
+    color: green;
+}
+.votes-block{
+    display: flex;
+    align-items: center;
+}
+.vote-btn,.vote-set{
+    height: 8vh;
+    width: 8vh;
+    font-size: 4vh;
+    background-color: thistle;
+}
+.vote-set{
+    border-color: black;
+    border-width: 7px;
+}

@@ -8,10 +8,12 @@ const usersRegisterUrl = usersUrl + 'register/'
 const usersGetLoggedUserDataUrl = usersUrl + 'loggedUserData/';
 const markUrl = serverUrl + 'marks/';
 const reviewsUrl = serverUrl + 'reviews/';
+const votesUrl = serverUrl + 'votes/';
+const votesReviewUrl = votesUrl+'review/';
 function authGetHeader() {
     return { 'Authorization': 'Basic ' + btoa(`${localStorage.getItem('name')}:${localStorage.getItem('password')}`) };
 }
 export {
     picturesDir, serverUrl, mainMenuGamesTopUrl, picturesUrl, usersUrl, usersRegisterUrl,
-    usersGetLoggedUserDataUrl, gamesUrl, markUrl, authGetHeader, reviewsUrl
+    usersGetLoggedUserDataUrl, gamesUrl, markUrl, authGetHeader, reviewsUrl,votesUrl,votesReviewUrl
 };

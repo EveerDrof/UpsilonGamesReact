@@ -13,5 +13,11 @@
     border: 5px solid teal;
 }
 #review-text-area{
-    
+    width: 90vw;
+    height: 50vh;
+}
+#send-review-btn{
+    background-color: turquoise;
+    width: 5vmax;
+    height: 5vmax;
 }

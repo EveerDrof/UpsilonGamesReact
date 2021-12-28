@@ -118,7 +118,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 </div>
             </div >
             {longGameData ?
-                <ReviewsSection gameName={longGameData.name} />
+                <ReviewsSection game={longGameData} />
                 :
                 <></>}
         </div>
