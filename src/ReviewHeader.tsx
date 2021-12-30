@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { authGetHeader, votesReviewUrl, votesUrl } from './constants';
 import './styles/ReviewHeader.css';
-export function ReviewHeader({ reviewId, commentaryId, likes, dislikes, userName, loadReviews,
-    userId }:
+export function ReviewHeader({ reviewId, commentaryId, likes, dislikes, userName, loadReviews}:
     {
         reviewId: number, commentaryId: number, likes: number, dislikes: number, userName: string,
         loadReviews: Function, userId: number

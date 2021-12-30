@@ -4,7 +4,10 @@ import { ReviewAddingForm } from "./ReviewAddingForm";
 import './styles/ReviewsSection.css'
 import { FullGameRecord, Review } from "./utils";
 import { ReviewHeader } from "./ReviewHeader";
-export function ReviewsSection({ game }: { game: FullGameRecord }) {
+export function ReviewsSection({ game, isGameInLibrary }: {
+    game: FullGameRecord,
+    isGameInLibrary: boolean
+}) {
     const [reviews, setReviews]: [Review[], Function] = useState([]);
     function loadReviews() {
         let url = `${reviewsUrl}?gameName=${game.name}&sort=newest&userId=-1&reviewsNumber=10`;
@@ -23,7 +26,7 @@ export function ReviewsSection({ game }: { game: FullGameRecord }) {
             <div className='review-block'>
                 <ReviewHeader reviewId={val.id} commentaryId={-1} likes={val.likesNumber}
                     dislikes={val.dislikesNumber} userName={val.userId.name}
-                    userId={val.userId.id} 
+                    userId={val.userId.id}
                     loadReviews={loadReviews} key={val.id}
                 />
                 <p style={{ whiteSpace: 'pre-line' }}>
@@ -33,7 +36,11 @@ export function ReviewsSection({ game }: { game: FullGameRecord }) {
     });
     return (
         <div>
-            <ReviewAddingForm loadReviews={loadReviews} gameName={game.name} />
+            {isGameInLibrary ?
+                <ReviewAddingForm loadReviews={loadReviews} gameName={game.name} />
+                :
+                <></>
+            }
             <div id='reviews-layout'>
                 {reviewsBlocks}
             </div>

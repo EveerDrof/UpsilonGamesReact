@@ -38,13 +38,20 @@
     align-items: center;
     width: 100%;
 }
-#buy-btn{
-    background-color: red;
-    border: none;
+#buy-btn,#in-library-btn{
+        border: none;
     border-radius: 20px;
     width: 10vw;
     height: 5vh;
+    
+}
+#buy-btn{
+    background-color: red;
     cursor: pointer;
+
+}
+#in-library-btn{
+    background-color: greenyellow;
 }
 #description{
     background-color: tan;

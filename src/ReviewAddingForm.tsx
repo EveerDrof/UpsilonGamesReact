@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { authGetHeader, reviewsUrl } from './constants';
 import './styles/ReviewAddingForm.css';
-export function ReviewAddingForm({ loadReviews, gameName }: { loadReviews: Function, gameName: string }) {
+export function ReviewAddingForm({ loadReviews, gameName }: { loadReviews: Function,
+     gameName: string }) {
     const [isExpanded, setIsExpanded]: [boolean, Function] = useState(false);
     return (
         <div>

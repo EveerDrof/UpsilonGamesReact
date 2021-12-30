@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
-import { authGetHeader, gamesUrl, markUrl, picturesUrl } from "./constants";
+import { addToCartUrl, authGetHeader, gameInLibraryUrl, gamesUrl, markUrl, picturesUrl } from "./constants";
 import { FullGameRecord, GameRecord } from "./utils";
 import './styles/GameRecordView.css'
 import './styles/App.css'
@@ -13,8 +13,13 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
     const [screeshotsBlobs, setScreeshotsBlobs]: [string[], Function] = useState([]);
     let [longGameData, setLongGameData]: [FullGameRecord | undefined, Function] = useState();
     const [fetchedUserMark, setFetchedUserMark]: [number, Function] = useState(-1);
+    const [isGameInLibrary, setIsGameInLibrary]: [boolean, Function] = useState(false);
     let userMark = 0;
     let idsUrl = picturesUrl + gameRecord.name + '/screenshotIDs';
+    function uploadAddGameToCartInfo() {
+        fetch(`${addToCartUrl}?gameName=${gameRecord.name}`,
+            { method: 'POST', headers: authGetHeader() });
+    }
     function fetchAndSetGameMark() {
         fetch(`${markUrl}?gameId=${longGameData?.id}&userId=-1`).then(data => data.json()).then(
             (mark) => {
@@ -39,6 +44,15 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
             setFetchedUserMark(json);
             fetchAndSetGameMark();
         }));
+    }
+    function checkIfGameInLibrary() {
+        fetch(`${gameInLibraryUrl}${gameRecord.name}`, { headers: authGetHeader() }).then(response => {
+            if (response.status === 200) {
+                setIsGameInLibrary(true);
+            } else {
+                setIsGameInLibrary(false);
+            }
+        })
     }
     useEffect(() => {
 
@@ -66,6 +80,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 }
             });
         fetchAndSetUserMark();
+        checkIfGameInLibrary();
     }, []);
     let screenshotsCarouselItems: JSX.Element[] = [];
     console.log(screeshotsBlobs);
@@ -84,7 +99,10 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 <div id='right-info-column'>
                     <h1>{gameRecord.name}</h1>
                     <h1>Price : {gameRecord.price}</h1>
-                    <button id="buy-btn">Buy</button>
+                    {isGameInLibrary ? <button id="in-library-btn">In library</button>
+                        :
+                        <button id="buy-btn" onClick={() => { uploadAddGameToCartInfo(); checkIfGameInLibrary(); }}>Buy</button>
+                    }
                     <div id='mark-circle-bar'>
                         {longGameData ?
                             <CircularProgressbar value={longGameData!.averageMark} maxValue={100} text={`${longGameData!.averageMark}`} />
@@ -100,17 +118,23 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
 
                     {localStorage.getItem('password') ?
                         <div>
-                            <h1>{fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}</h1>
-                            <div id='mark-setter-column'>
-                                <div id='mark-setter-line'>
-                                    <input type={'range'} onChange={(val) => {
-                                        userMark = parseInt(val.target.value);
-                                        document.getElementById('user-mark-text')!.innerHTML = '' + userMark;
-                                    }} />
-                                    <h1 id='user-mark-text'>{userMark}</h1>
-                                </div>
-                                <button id='mark-setter-button' onClick={() => { sendMarkToServer(userMark); }}>Upload mark</button>
-                            </div>
+                            {isGameInLibrary ?
+                                <>
+                                    <h1>{fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}</h1>
+                                    <div id='mark-setter-column'>
+                                        <div id='mark-setter-line'>
+                                            <input type={'range'} onChange={(val) => {
+                                                userMark = parseInt(val.target.value);
+                                                document.getElementById('user-mark-text')!.innerHTML = '' + userMark;
+                                            }} />
+                                            <h1 id='user-mark-text'>{userMark}</h1>
+                                        </div>
+                                        <button id='mark-setter-button' onClick={() => { sendMarkToServer(userMark); }}>Upload mark</button>
+                                    </div>
+                                </>
+                                :
+                                <></>
+                            }
                         </div>
                         :
                         <></>
@@ -118,7 +142,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 </div>
             </div >
             {longGameData ?
-                <ReviewsSection game={longGameData} />
+                <ReviewsSection game={longGameData} isGameInLibrary={isGameInLibrary} />
                 :
                 <></>}
         </div>

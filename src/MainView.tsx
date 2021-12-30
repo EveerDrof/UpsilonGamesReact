@@ -3,7 +3,7 @@ import { GamesList } from './GamesList';
 import { Jumper } from './Jumper';
 import { mainMenuGamesTopUrl, picturesUrl } from './constants';
 import { Carousel } from 'react-responsive-carousel';
-import { GameRecord } from './utils'
+import { GameRecord, loadGamewRecords } from './utils'
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
     const [showJumper, setShowJumper] = useState(false);
@@ -21,20 +21,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        fetch(mainMenuGamesTopUrl)
-            .then((response) => response.json())
-            .then((json) => {
-                if (json) {
-                    json = { data: json };
-                    json.data.forEach((game: any) => {
-                        let picUrl = picturesUrl + game.name + '/shortcut';
-                        fetch(picUrl).then(response => response.blob()).then(blob => {
-                            game.imageBlob = URL.createObjectURL(blob);
-                            setMainMenuGamesRecords({ ...json as Array<GameRecord> });
-                        });
-                    });
-                }
-            });
+        loadGamewRecords(mainMenuGamesTopUrl,setMainMenuGamesRecords,null);
     }, []);
     let carouselItems: JSX.Element[] = [
         <div
