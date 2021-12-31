@@ -10,7 +10,7 @@ export function Library({ setCurrentView, libraryGameRecords, type, updateRootEl
                 <>
                     <h1>Library </h1>
                     <GamesList gamesRecords={libraryGameRecords.data}
-                        setCurrentView={setCurrentView} type='cart'
+                        setCurrentView={setCurrentView} type='library'
                         updateRootElement={updateRootElement} />
                 </>
                 :

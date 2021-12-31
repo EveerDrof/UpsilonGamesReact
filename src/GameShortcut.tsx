@@ -26,6 +26,9 @@ export function GameShortcut({ gameRecord, setCurrentView, type, updateRootEleme
       additionalFunctional = <button
         onClick={() => { requestDeleteFromCartAndUpdate(); }}>Delete</button>
       break;
+    default:
+      additionalFunctional = <></>;
+      break;
   }
   return (
     <div className='gameShortcut' >
