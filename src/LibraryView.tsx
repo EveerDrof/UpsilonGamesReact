@@ -4,10 +4,12 @@ import { authGetHeader, buyCartUrl, cartUrl, libraryUrl } from './constants';
 import { Library } from './Library';
 import { loadGamewRecords } from './utils';
 
-export function LibraryView({ setCurrentView }: { setCurrentView: Function }) {
+export function LibraryView({ setCurrentView  }: { setCurrentView: Function }) {
     const [cartGameRecords, setCartGameRecords]: [any, Function] = useState([]);
     const [libraryGameRecords, setLibraryGameRecords]: [any, Function] = useState([]);
     function loadAllRecords() {
+        setCartGameRecords([]);
+        setLibraryGameRecords([]);
         loadGamewRecords(cartUrl, setCartGameRecords, authGetHeader());
         loadGamewRecords(libraryUrl, setLibraryGameRecords, authGetHeader());
     }
@@ -22,7 +24,7 @@ export function LibraryView({ setCurrentView }: { setCurrentView: Function }) {
     return (
         <div>
             <Cart setCurrentView={setCurrentView} cartGameRecords={cartGameRecords}
-                sendBuyRequest={sendBuyRequest} />
+                sendBuyRequest={sendBuyRequest} updateRootElement={loadAllRecords}/>
             <Library setCurrentView={setCurrentView} libraryGameRecords={libraryGameRecords} />
         </div>
     );

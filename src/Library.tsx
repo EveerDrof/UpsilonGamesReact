@@ -1,16 +1,17 @@
-import { useEffect, useState } from 'react';
-import { authGetHeader, libraryUrl } from './constants';
 import { GamesList } from './GamesList';
-import { loadGamewRecords } from './utils';
 
-export function Library({ setCurrentView,libraryGameRecords }: 
-    { setCurrentView: Function,libraryGameRecords:any }) {
+export function Library({ setCurrentView, libraryGameRecords, type, updateRootElement }:
+    {
+        setCurrentView: Function, libraryGameRecords: any, type?: string, updateRootElement?: Function
+    }) {
     return (
         <>
             {libraryGameRecords && libraryGameRecords?.length !== 0 ?
                 <>
                     <h1>Library </h1>
-                    <GamesList gamesRecords={libraryGameRecords.data} setCurrentView={setCurrentView} />
+                    <GamesList gamesRecords={libraryGameRecords.data}
+                        setCurrentView={setCurrentView} type='cart'
+                        updateRootElement={updateRootElement} />
                 </>
                 :
                 <h1>Library is empty</h1>

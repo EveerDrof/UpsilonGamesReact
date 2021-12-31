@@ -1,8 +1,12 @@
 import { GameShortcut } from './GameShortcut';
 import './styles/GamesList.css';
 import { GameRecord } from './utils';
-export function GamesList({ gamesRecords, setCurrentView }: { gamesRecords: GameRecord[] | undefined,
-   setCurrentView: Function }) {
+export function GamesList({ gamesRecords, setCurrentView, type, updateRootElement
+ }:
+  {
+    gamesRecords: GameRecord[] | undefined, setCurrentView: Function,
+    type?: string, updateRootElement?: Function
+  }) {
   console.log(gamesRecords);
   if (gamesRecords) {
     return (
@@ -11,6 +15,9 @@ export function GamesList({ gamesRecords, setCurrentView }: { gamesRecords: Game
           <GameShortcut
             gameRecord={val}
             setCurrentView={setCurrentView}
+            type={type}
+            updateRootElement={updateRootElement}
+            gamesRecords={gamesRecords}
           />
         ))}
       </div>

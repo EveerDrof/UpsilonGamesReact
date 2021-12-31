@@ -13,7 +13,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
     const [screeshotsBlobs, setScreeshotsBlobs]: [string[], Function] = useState([]);
     let [longGameData, setLongGameData]: [FullGameRecord | undefined, Function] = useState();
     const [fetchedUserMark, setFetchedUserMark]: [number, Function] = useState(-1);
-    const [isGameInLibrary, setIsGameInLibrary]: [boolean, Function] = useState(false);
+    const [gameStatusInLibrary, setGameStatusInLibrary]: [string, Function] = useState('notInLibrary');
     let userMark = 0;
     let idsUrl = picturesUrl + gameRecord.name + '/screenshotIDs';
     function uploadAddGameToCartInfo() {
@@ -46,13 +46,18 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
         }));
     }
     function checkIfGameInLibrary() {
+        console.log('Check if game in library');
         fetch(`${gameInLibraryUrl}${gameRecord.name}`, { headers: authGetHeader() }).then(response => {
             if (response.status === 200) {
-                setIsGameInLibrary(true);
-            } else {
-                setIsGameInLibrary(false);
+                setGameStatusInLibrary('inLibrary');
+                return 'inLibrary';
             }
-        })
+            return response.text();
+
+        }).then((gameStatus) => {
+            console.log('Game state', gameStatus);
+            setGameStatusInLibrary(gameStatus);
+        });
     }
     useEffect(() => {
 
@@ -89,7 +94,22 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
         screenshotsCarouselItems.push(
             <img key={i} src={picUrl} className="screenshot" ></img>);
     }
-
+    let buyingBtn;
+    switch (gameStatusInLibrary) {
+        case 'inLibrary':
+            buyingBtn = <button id="in-library-btn">In library</button>
+            break;
+        case 'inCart':
+            buyingBtn = <button id="in-cart-btn">In cart</button>
+            break;
+        default:
+            buyingBtn = <button id="buy-btn" onClick={() => { 
+                uploadAddGameToCartInfo(); 
+                setGameStatusInLibrary('inCart');
+            }}>Buy</button>
+            break;
+    }
+    console.log('Status',gameStatusInLibrary);
     return (
         <div>
             <div id='top-info'>
@@ -99,10 +119,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 <div id='right-info-column'>
                     <h1>{gameRecord.name}</h1>
                     <h1>Price : {gameRecord.price}</h1>
-                    {isGameInLibrary ? <button id="in-library-btn">In library</button>
-                        :
-                        <button id="buy-btn" onClick={() => { uploadAddGameToCartInfo(); checkIfGameInLibrary(); }}>Buy</button>
-                    }
+                    {buyingBtn}
                     <div id='mark-circle-bar'>
                         {longGameData ?
                             <CircularProgressbar value={longGameData!.averageMark} maxValue={100} text={`${longGameData!.averageMark}`} />
@@ -118,7 +135,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
 
                     {localStorage.getItem('password') ?
                         <div>
-                            {isGameInLibrary ?
+                            {gameStatusInLibrary === 'inLibrary' ?
                                 <>
                                     <h1>{fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}</h1>
                                     <div id='mark-setter-column'>
@@ -142,7 +159,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 </div>
             </div >
             {longGameData ?
-                <ReviewsSection game={longGameData} isGameInLibrary={isGameInLibrary} />
+                <ReviewsSection game={longGameData} isGameInLibrary={gameStatusInLibrary === 'inLibrary'} />
                 :
                 <></>}
         </div>
