@@ -8,8 +8,10 @@ import './styles/App.css'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ReviewsSection } from "./ReviewsSection";
+import { LoadingScreen } from "./LoadingScreen";
 
 export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
+    const [isLoaded, setIsLoaded]: [Boolean, Function] = useState(false);
     const [screeshotsBlobs, setScreeshotsBlobs]: [string[], Function] = useState([]);
     let [longGameData, setLongGameData]: [FullGameRecord | undefined, Function] = useState();
     const [fetchedUserMark, setFetchedUserMark]: [number, Function] = useState(-1);
@@ -21,7 +23,7 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
             { method: 'POST', headers: authGetHeader() });
     }
     function fetchAndSetGameMark() {
-        fetch(`${markUrl}?gameId=${longGameData?.id}&userId=-1`).then(data => data.json()).then(
+        return fetch(`${markUrl}?gameId=${longGameData?.id}&userId=-1`).then(data => data.json()).then(
             (mark) => {
                 longGameData!.averageMark = mark;
                 let newVar = { ...longGameData }
@@ -29,25 +31,25 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                 console.log('Setting');
                 console.log(longGameData);
             }
-        )
+        ).then(() => true);
     }
     function sendMarkToServer(mark: number) {
         let url = markUrl + `?mark=${mark}&userId=${localStorage.getItem('userId')}&gameId=${longGameData?.id}`;
-        fetch(url, { method: 'POST', headers: authGetHeader() }).then(() => {
+        return fetch(url, { method: 'POST', headers: authGetHeader() }).then(() => {
             fetchAndSetUserMark();
 
-        });
+        }).then(() => true);
     }
     function fetchAndSetUserMark() {
         let url = `${markUrl}?gameId=${longGameData?.id}&userId=${localStorage.getItem('userId')}`;
-        fetch(url).then(data => data.json()).then((json => {
+        return fetch(url).then(data => data.json()).then((json => {
             setFetchedUserMark(json);
             fetchAndSetGameMark();
-        }));
+        })).then(() => true);
     }
     function checkIfGameInLibrary() {
         console.log('Check if game in library');
-        fetch(`${gameInLibraryUrl}${gameRecord.name}`, { headers: authGetHeader() }).then(response => {
+        return fetch(`${gameInLibraryUrl}${gameRecord.name}`, { headers: authGetHeader() }).then(response => {
             if (response.status === 200) {
                 setGameStatusInLibrary('inLibrary');
                 return 'inLibrary';
@@ -57,18 +59,18 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
         }).then((gameStatus) => {
             console.log('Game state', gameStatus);
             setGameStatusInLibrary(gameStatus);
-        });
+        }).then(() => true);;
     }
-    useEffect(() => {
-
-        fetch(gamesUrl + gameRecord.name + '/long', {}).then(data => data.json()).then(
+    function fetchLongData() {
+        return fetch(gamesUrl + gameRecord.name + '/long', {}).then(data => data.json()).then(
             (json) => {
                 longGameData = json;
                 setLongGameData(json as FullGameRecord);
                 longGameData!.id = json.id;
                 fetchAndSetUserMark();
-            });
-
+            }).then(() => true);
+    }
+    function fetchIds() {
         fetch(idsUrl, {}).then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -83,9 +85,16 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                         }
                     );
                 }
-            });
-        fetchAndSetUserMark();
-        checkIfGameInLibrary();
+            }).then(() => true);
+    }
+    useEffect(() => {
+        setIsLoaded(true);
+        Promise.all([
+            fetchLongData(),
+            fetchIds(),
+            fetchAndSetUserMark(),
+            checkIfGameInLibrary()
+        ]).then(setIsLoaded(true));
     }, []);
     let screenshotsCarouselItems: JSX.Element[] = [];
     console.log(screeshotsBlobs);
@@ -111,9 +120,13 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
     }
     console.log('Status', gameStatusInLibrary);
     let tagsList: JSX.Element[] = [];
-    longGameData?.tags.forEach(tag=>{
+    longGameData?.tags.forEach(tag => {
         tagsList.push(<h4 className='tag'>{tag.name}</h4>);
     });
+    console.log('Bool is ',isLoaded);
+    if(!isLoaded){
+        return <LoadingScreen/>
+    }
     return (
         <div>
             <div id='top-info'>

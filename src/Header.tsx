@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import ReactSearchBox from 'react-search-box';
 import { Cabinet } from './Cabinet';
-import { searchGameUrl } from './constants';
+import { gamesUrl, searchGameUrl } from './constants';
 import { LibraryView } from './LibraryView';
 import { LoginRegister } from './LoginRegister';
 import { MainView } from './MainView';
 import './styles/Header.css';
 import { GameRecord } from './utils';
 import Select, { components, InputActionMeta, SingleValue } from "react-select";
+import { GameRecordView } from './GameRecordView';
+import { LoadingScreen } from './LoadingScreen';
 
 export function Header({ setCurrentView }: { setCurrentView: Function }) {
 
   // const [searchData, setSearchData]: [GameRecord[], Function] = useState([]);
-  let [searchGamesNames, setSearchGamesNames]: [{ key: string, value: string,label:string }[], Function]
+  let [searchGamesNames, setSearchGamesNames]: [{ key: string, value: string, label: string }[], Function]
     = useState([]);
   function getSearchData(namePart: string) {
     let url = `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=0&namePart=${namePart}`;
@@ -21,7 +23,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
       searchGamesNames = [];
       if (json) {
         json.forEach((val: GameRecord) => {
-          searchGamesNames.push({ key: val.name, value: val.name,label:val.name });
+          searchGamesNames.push({ key: val.name, value: val.name, label: val.name });
         });
       }
       console.log('Data for search', searchGamesNames);
@@ -47,12 +49,21 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
         placeholder={'Search'}
         options={searchGamesNames}
         onInputChange={
-          (newValue:string,actionMeta:InputActionMeta) => {
+          (newValue: string, actionMeta: InputActionMeta) => {
             if (newValue) {
               getSearchData(newValue);
             }
           }
         }
+        onChange={(newValue: SingleValue<{ key: string; value: string; label: string; }>) => {
+          fetch(`${gamesUrl}${newValue?.value}/short`).then(data => data.json()).then(
+            (json) => {
+              setCurrentView(<LoadingScreen/>);
+              setCurrentView(<GameRecordView gameRecord={{...json}} />)
+            }
+          );
+
+        }}
       />
     </div>
     <button className='header-btn'>Wishlist</button>
