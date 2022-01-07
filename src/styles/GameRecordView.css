@@ -83,3 +83,16 @@
     width: 300px;
     height: 10px;
 }
+#tag-wrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 20px;
+}
+.tag{
+    background-color: cadetblue;
+    color: chartreuse;
+    max-width: 25vw;
+    min-height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}

@@ -103,13 +103,17 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
             buyingBtn = <button id="in-cart-btn">In cart</button>
             break;
         default:
-            buyingBtn = <button id="buy-btn" onClick={() => { 
-                uploadAddGameToCartInfo(); 
+            buyingBtn = <button id="buy-btn" onClick={() => {
+                uploadAddGameToCartInfo();
                 setGameStatusInLibrary('inCart');
             }}>Buy</button>
             break;
     }
-    console.log('Status',gameStatusInLibrary);
+    console.log('Status', gameStatusInLibrary);
+    let tagsList: JSX.Element[] = [];
+    longGameData?.tags.forEach(tag=>{
+        tagsList.push(<h4 className='tag'>{tag.name}</h4>);
+    });
     return (
         <div>
             <div id='top-info'>
@@ -128,11 +132,6 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                         }
 
                     </div>
-                    {longGameData ?
-                        <p id='description'>Description : <br /> {longGameData.description}</p>
-                        : <></>
-                    }
-
                     {localStorage.getItem('password') ?
                         <div>
                             {gameStatusInLibrary === 'inLibrary' ?
@@ -157,7 +156,14 @@ export function GameRecordView({ gameRecord }: { gameRecord: GameRecord }) {
                         <></>
                     }
                 </div>
+
             </div >
+            <h2>Tags : </h2>
+            <div id='tag-wrapper'>{tagsList}</div>
+            {longGameData ?
+                <p id='description'>Description : <br /> {longGameData.description}</p>
+                : <></>
+            }
             {longGameData ?
                 <ReviewsSection game={longGameData} isGameInLibrary={gameStatusInLibrary === 'inLibrary'} />
                 :

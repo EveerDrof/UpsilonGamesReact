@@ -23,11 +23,13 @@ export function ReviewsSection({ game, isGameInLibrary }: {
     if (reviews && reviews.length !== 0) {
         console.log('Reviews ',reviews);
         reviews.forEach((val) => {
+            console.log('Review',val);
             reviewsBlocks.push(
                 <div className='review-block'>
                     <ReviewHeader reviewId={val.id} commentaryId={-1} likes={val.likesNumber}
                         dislikes={val.dislikesNumber} userName={val.userId.name}
                         userId={val.userId.id}
+                        creationDate={val.creationDate}
                         loadReviews={loadReviews} key={val.id}
                     />
                     <p style={{ whiteSpace: 'pre-line' }}>

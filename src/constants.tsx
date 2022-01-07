@@ -17,11 +17,13 @@ const addToCartUrl = cartUrl;
 const buyCartUrl = storeUrl+'buyCart/';
 const gameInLibraryUrl = storeUrl+'checkGameInLibrary/';
 const deleteFromCartUrl = storeUrl + 'cart/remove';
+const searchGameUrl = gamesUrl + 'selection/';
 function authGetHeader() {
     return { 'Authorization': 'Basic ' + btoa(`${localStorage.getItem('name')}:${localStorage.getItem('password')}`) };
 }
 export {
     picturesDir, serverUrl, mainMenuGamesTopUrl, picturesUrl, usersUrl, usersRegisterUrl,
-    usersGetLoggedUserDataUrl, gamesUrl, markUrl, authGetHeader, reviewsUrl,votesUrl,votesReviewUrl,
-    cartUrl,libraryUrl,addToCartUrl,buyCartUrl,gameInLibraryUrl,deleteFromCartUrl
+    usersGetLoggedUserDataUrl, gamesUrl, markUrl, authGetHeader, reviewsUrl,votesUrl,
+    votesReviewUrl,cartUrl,libraryUrl,addToCartUrl,buyCartUrl,gameInLibraryUrl,
+    deleteFromCartUrl,searchGameUrl
 };

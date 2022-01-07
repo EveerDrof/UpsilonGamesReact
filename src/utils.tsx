@@ -14,7 +14,12 @@ export interface FullGameRecord {
     averageMark: number;
     price: number;
     imageBlob: string;
+    tags:Tag[]
 };
+export interface Tag{
+    id:number,
+    name:string
+}
 export interface User {
     id: number,
     name: string
@@ -24,7 +29,8 @@ export interface Review {
     userId: User,
     id: number,
     dislikesNumber: number,
-    likesNumber: number
+    likesNumber: number,
+    creationDate:number
 }
 export interface Vote {
     id: number,

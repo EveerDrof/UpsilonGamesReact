@@ -22,4 +22,9 @@
 .header-search-field{
     width: 100%;
     flex: 0 0 25vw;
+    height: auto;
+}
+.jWJsas > ul{
+    position: absolute;
+    z-index: 3;
 }
