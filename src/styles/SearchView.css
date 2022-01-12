@@ -1,0 +1,22 @@
+#search-view-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.search-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.search-parameters{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 25%;
+    padding: 10px 10px 10px 10px;
+}
+#select-block{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#selected-games{
+    flex-basis: 70%;
+}

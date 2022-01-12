@@ -9,7 +9,7 @@ export function Library({ setCurrentView, libraryGameRecords, type, updateRootEl
             {libraryGameRecords && libraryGameRecords?.length !== 0 ?
                 <>
                     <h1>Library </h1>
-                    <GamesList gamesRecords={libraryGameRecords.data}
+                    <GamesList gamesRecords={libraryGameRecords}
                         setCurrentView={setCurrentView} type='library'
                         updateRootElement={updateRootElement} />
                 </>

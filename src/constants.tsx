@@ -1,5 +1,6 @@
 const picturesDir = '../pictures/';
-const serverUrl = 'http://localhost:9005/';
+const serverUrl = 'http://127.0.0.1:9005/';
+// const serverUrl = 'http://upsilon.ddns.net/server/';
 const gamesUrl = serverUrl + 'games/';
 const mainMenuGamesTopUrl = serverUrl + 'games/allshort/';
 const picturesUrl = serverUrl + 'pictures/';
@@ -18,6 +19,9 @@ const buyCartUrl = storeUrl+'buyCart/';
 const gameInLibraryUrl = storeUrl+'checkGameInLibrary/';
 const deleteFromCartUrl = storeUrl + 'cart/remove';
 const searchGameUrl = gamesUrl + 'selection/';
+const tagsUrl = serverUrl+'tags/';
+const allTagsUrl  = tagsUrl+'all-tags/';
+const selectGamesUrl = gamesUrl+'selection/';
 function authGetHeader() {
     return { 'Authorization': 'Basic ' + btoa(`${localStorage.getItem('name')}:${localStorage.getItem('password')}`) };
 }
@@ -25,5 +29,5 @@ export {
     picturesDir, serverUrl, mainMenuGamesTopUrl, picturesUrl, usersUrl, usersRegisterUrl,
     usersGetLoggedUserDataUrl, gamesUrl, markUrl, authGetHeader, reviewsUrl,votesUrl,
     votesReviewUrl,cartUrl,libraryUrl,addToCartUrl,buyCartUrl,gameInLibraryUrl,
-    deleteFromCartUrl,searchGameUrl
+    deleteFromCartUrl,searchGameUrl,tagsUrl,allTagsUrl,selectGamesUrl
 };

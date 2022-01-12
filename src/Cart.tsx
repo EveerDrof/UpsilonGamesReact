@@ -12,7 +12,7 @@ export function Cart({ setCurrentView, cartGameRecords, sendBuyRequest, updateRo
             {cartGameRecords && cartGameRecords?.length !== 0 ?
                 <>
                     <h1>Cart </h1>
-                    <GamesList gamesRecords={cartGameRecords.data} setCurrentView={setCurrentView}
+                    <GamesList gamesRecords={cartGameRecords} setCurrentView={setCurrentView}
                     type='cart' updateRootElement={updateRootElement} />
                     <button onClick={() => { sendBuyRequest(); }}>Buy</button>
                 </>

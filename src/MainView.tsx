@@ -50,7 +50,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
         <div className='App'>
             <Carousel verticalSwipe='natural'>{carouselItems}</Carousel>
             {mainMenuGamesRecords !== undefined ?
-                <GamesList gamesRecords={mainMenuGamesRecords.data} setCurrentView={setCurrentView} /> : <></>
+                <GamesList gamesRecords={mainMenuGamesRecords} setCurrentView={setCurrentView} /> : <></>
             }
             {jumper}
         </div>
