@@ -53,7 +53,6 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
   return (
     <div id='header'>
       <button className='header-btn'>Logo</button>
-      <button className='header-btn'>Select city</button>
       <button
         className='header-btn'
         onClick={() => {

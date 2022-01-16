@@ -41,11 +41,16 @@ export function CommentsView({
     if (specifiedSortType !== '') {
       sortType = specifiedSortType;
     }
+    let authType = 'unauthorized';
+    let init: any = {};
+    if (localStorage.getItem('name')) {
+      authType = 'authorized';
+
+      init.headers = authGetHeader();
+    }
     fetch(
-      `${commentsReviewsUrl}${review.id}?commentsNumber=50&sort=${sortType}`,
-      {
-        headers: authGetHeader(),
-      }
+      `${commentsReviewsUrl}${review.id}/${authType}?commentsNumber=50&sort=${sortType}`,
+      init
     )
       .then((data) => {
         console.log(data);
