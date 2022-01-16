@@ -6,15 +6,12 @@ export interface GameRecord {
   averageMark: number;
   price: number;
   imageBlob: string;
+  discount: number;
 }
-export interface FullGameRecord {
-  name: string;
+export interface FullGameRecord extends GameRecord {
+  tags: Tag[];
   id: number;
   description: string;
-  averageMark: number;
-  price: number;
-  imageBlob: string;
-  tags: Tag[];
 }
 export interface Tag {
   id: number;
@@ -73,4 +70,10 @@ export function loadGamewRecords(
         setGameRecords({});
       }
     });
+}
+
+export function removeUserStorageData() {
+  localStorage.removeItem('name');
+  localStorage.removeItem('password');
+  localStorage.removeItem('userId');
 }

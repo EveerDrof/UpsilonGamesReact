@@ -5,7 +5,7 @@ import { LibraryView } from './LibraryView';
 import { LoginRegister } from './LoginRegister';
 import { MainView } from './MainView';
 import './styles/Header.css';
-import { GameRecord } from './utils';
+import { GameRecord, removeUserStorageData } from './utils';
 import Select, { InputActionMeta, SingleValue } from 'react-select';
 import { GameRecordView } from './GameRecordView';
 import { LoadingScreen } from './LoadingScreen';
@@ -47,8 +47,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
     getSearchData('');
   }, []);
   function logout() {
-    localStorage.removeItem('password');
-    localStorage.removeItem('name');
+    removeUserStorageData();
     setCurrentView(<LoginRegister setCurrentView={setCurrentView} />);
   }
   return (

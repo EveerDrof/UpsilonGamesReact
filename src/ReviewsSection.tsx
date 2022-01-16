@@ -29,7 +29,13 @@ export function ReviewsSection({
       startUrl = reviewsUnauthorizedUrl;
     }
     let url = `${startUrl}?gameName=${game.name}&sort=${sortType}&neededUserId=-1&reviewsNumber=10`;
-    fetch(url, { headers: authGetHeader() })
+    let authData: any = {};
+    if (localStorage.getItem('name')) {
+      authData.headers = authGetHeader();
+    } else {
+      authData = null;
+    }
+    fetch(url, authData)
       .then((data) => data.json())
       .then((json) => {
         setReviews(json);
