@@ -1,61 +1,90 @@
-import { useEffect, useState } from "react";
-import { reviewsUrl } from "./constants";
-import { ReviewAddingForm } from "./ReviewAddingForm";
-import './styles/ReviewsSection.css'
-import { FullGameRecord, Review } from "./utils";
-import { ReviewHeader } from "./ReviewHeader";
+import { useEffect, useState } from 'react';
+import {
+  authGetHeader,
+  reviewsAuthorizedUrl,
+  reviewsUnauthorizedUrl,
+  votesUrl,
+} from './constants';
+import { ReviewAddingForm } from './ReviewAddingForm';
+import './styles/ReviewsSection.css';
+import { FullGameRecord, Review } from './utils';
+import { PostHeader } from './PostHeader';
 import Select from 'react-select';
-export function ReviewsSection({ game, isGameInLibrary }: {
-    game: FullGameRecord,
-    isGameInLibrary: boolean
+export function ReviewsSection({
+  game,
+  isGameInLibrary,
+  setCurrentView,
+}: {
+  game: FullGameRecord;
+  isGameInLibrary: boolean;
+  setCurrentView: Function;
 }) {
-    const [reviews, setReviews]: [Review[], Function] = useState([]);
-    function loadReviews(sortType :string= 'newest') {
-        let url = `${reviewsUrl}?gameName=${game.name}&sort=${sortType}&userId=-1&reviewsNumber=10`;
-        fetch(url, {}).then(data => data.json()).then((json) => {
-            setReviews(json);
-        });
+  const [reviews, setReviews]: [Review[], Function] = useState([]);
+  const [sortType, setSortType]: [string, Function] = useState('newest');
+  function loadReviews(sortType: string = 'newest') {
+    let startUrl;
+    if (localStorage.getItem('password')) {
+      startUrl = reviewsAuthorizedUrl;
+    } else {
+      startUrl = reviewsUnauthorizedUrl;
     }
-    useEffect(() => {
-        loadReviews('newest');
-    }, []);
-    let reviewsBlocks: JSX.Element[] = [];
-    if (reviews && reviews.length !== 0) {
-        console.log('Reviews ',reviews);
-        reviews.forEach((val) => {
-            console.log('Review',val);
-            reviewsBlocks.push(
-                <div className='review-block'>
-                    <ReviewHeader reviewId={val.id} commentaryId={-1} likes={val.likesNumber}
-                        dislikes={val.dislikesNumber} userName={val.userId.name}
-                        userId={val.userId.id}
-                        creationDate={val.creationDate}
-                        loadReviews={loadReviews} key={val.id}
-                    />
-                    <p style={{ whiteSpace: 'pre-line' }}>
-                        {val.reviewText}
-                    </p>
-                </div>);
+    let url = `${startUrl}?gameName=${game.name}&sort=${sortType}&neededUserId=-1&reviewsNumber=10`;
+    fetch(url, { headers: authGetHeader() })
+      .then((data) => data.json())
+      .then((json) => {
+        setReviews(json);
+      });
+  }
+  useEffect(() => {
+    loadReviews('newest');
+  }, []);
+  let reviewsBlocks: JSX.Element[] = [];
+  if (reviews && reviews.length !== 0) {
+    console.log('Reviews ', reviews);
+    reviews.forEach((val) => {
+      console.log('Review', val);
+      function sendVote(voteType: boolean) {
+        let url = `${votesUrl}review?reviewId=${val.id}&vote=${voteType}`;
+        fetch(url, { method: 'POST', headers: authGetHeader() }).then(() => {
+          loadReviews(sortType);
         });
-    }
-    let sortOptions = [
-        { value: 'newest', label: 'newest' },
-        { value: 'oldest', label: 'oldest' },
-        { value: 'mostLiked', label: 'mostLiked' },
-        { value: 'highestDifference', label: 'highestDifference' },
-    ];
-    return (
-        <div id='reviews-section'>
-            {isGameInLibrary ?
-                <ReviewAddingForm loadReviews={loadReviews} gameName={game.name} />
-                :
-                <></>
-            }
-            <Select id='sort-select' options={sortOptions} defaultValue={sortOptions[0]}
-                onChange={(val) => {loadReviews(val!.label); }} />
-            <div id='reviews-layout'>
-                {reviewsBlocks}
-            </div>
+      }
+      reviewsBlocks.push(
+        <div className='review-block'>
+          <PostHeader
+            post={val}
+            setCurrentView={setCurrentView}
+            isCommentsButtonOnOrAddComment={true}
+            sendVote={sendVote}
+          />
+          <p style={{ whiteSpace: 'pre-line' }}>{val.text}</p>
         </div>
-    );
+      );
+    });
+  }
+  let sortOptions = [
+    { value: 'newest', label: 'newest' },
+    { value: 'oldest', label: 'oldest' },
+    { value: 'mostLiked', label: 'mostLiked' },
+    { value: 'highestDifference', label: 'highestDifference' },
+  ];
+  return (
+    <div id='reviews-section'>
+      {isGameInLibrary ? (
+        <ReviewAddingForm loadReviews={loadReviews} gameName={game.name} />
+      ) : (
+        <></>
+      )}
+      <Select
+        id='sort-select'
+        options={sortOptions}
+        defaultValue={sortOptions[0]}
+        onChange={(val) => {
+          setSortType(val!.label);
+          loadReviews(val!.label);
+        }}
+      />
+      <div id='reviews-layout'>{reviewsBlocks}</div>
+    </div>
+  );
 }

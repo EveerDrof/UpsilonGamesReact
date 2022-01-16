@@ -1,0 +1,21 @@
+.comment-element-wrapper{
+    margin-left: 4vw;
+    border-radius: 10px;
+    padding-left: 5px;
+    margin-top: 10px;
+}
+.comment-element{
+    border-radius: 15px;
+    padding: 1px 0;
+}
+.comment-header{
+    display: flex;
+    display: row;
+    justify-content: space-between;
+    background-color: green;
+    border-radius: 20px;
+}
+.new-comment-input{
+    width: 100%;
+    height: 40vh;
+}

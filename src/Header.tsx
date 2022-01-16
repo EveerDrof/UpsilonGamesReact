@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import ReactSearchBox from 'react-search-box';
 import { Cabinet } from './Cabinet';
 import { gamesUrl, searchGameUrl } from './constants';
 import { LibraryView } from './LibraryView';
@@ -7,7 +6,7 @@ import { LoginRegister } from './LoginRegister';
 import { MainView } from './MainView';
 import './styles/Header.css';
 import { GameRecord } from './utils';
-import Select, { components, InputActionMeta, SingleValue } from 'react-select';
+import Select, { InputActionMeta, SingleValue } from 'react-select';
 import { GameRecordView } from './GameRecordView';
 import { LoadingScreen } from './LoadingScreen';
 import { SearchView } from './SearchView';
@@ -15,7 +14,6 @@ import { SearchView } from './SearchView';
 const advancedSearchName = 'Advanced Search';
 
 export function Header({ setCurrentView }: { setCurrentView: Function }) {
-  // const [searchData, setSearchData]: [GameRecord[], Function] = useState([]);
   let [searchGamesNames, setSearchGamesNames]: [
     { key: string; value: string; label: string }[],
     Function
@@ -25,7 +23,6 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
     fetch(url)
       .then((data) => data.json())
       .then((json) => {
-        // setSearchData({ ...json });
         searchGamesNames = [];
         searchGamesNames.push({
           key: advancedSearchName,
@@ -73,7 +70,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           onInputChange={(newValue: string, actionMeta: InputActionMeta) => {
             if (newValue) {
               if (newValue === advancedSearchName) {
-                setCurrentView(<SearchView  setCurrentView={setCurrentView}/>);
+                setCurrentView(<SearchView setCurrentView={setCurrentView} />);
               } else {
                 getSearchData(newValue);
               }
@@ -84,13 +81,18 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           ) => {
             if (newValue) {
               if (newValue.label === advancedSearchName) {
-                setCurrentView(<SearchView setCurrentView={setCurrentView}/>);
+                setCurrentView(<SearchView setCurrentView={setCurrentView} />);
               } else {
                 fetch(`${gamesUrl}${newValue?.value}/short`)
                   .then((data) => data.json())
                   .then((json) => {
                     setCurrentView(<LoadingScreen />);
-                    setCurrentView(<GameRecordView gameRecord={{ ...json }} />);
+                    setCurrentView(
+                      <GameRecordView
+                        gameRecord={{ ...json }}
+                        setCurrentView={setCurrentView}
+                      />
+                    );
                   });
               }
             }

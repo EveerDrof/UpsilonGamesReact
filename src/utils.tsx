@@ -24,18 +24,25 @@ export interface User {
   id: number;
   name: string;
 }
-export interface Review {
-  reviewText: string;
+export interface Post {
+  text: string;
   userId: User;
   id: number;
   dislikesNumber: number;
   likesNumber: number;
   creationDate: number;
+  isDisliked: boolean;
+  isLiked: boolean;
+}
+export interface Review extends Post {}
+export interface Comment extends Post {
+  children: Comment[];
 }
 export interface Vote {
   id: number;
   vote: boolean;
 }
+
 export function loadPictures(gamesList: any, setGameRecords: Function) {
   gamesList.forEach((game: any) => {
     let picUrl = picturesUrl + game.name + '/shortcut';
@@ -43,7 +50,7 @@ export function loadPictures(gamesList: any, setGameRecords: Function) {
       .then((response) => response.blob())
       .then((blob) => {
         game.imageBlob = URL.createObjectURL(blob);
-        console.log('List',gamesList);
+        console.log('List', gamesList);
         setGameRecords([...(gamesList as Array<GameRecord>)]);
       });
   });
