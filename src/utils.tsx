@@ -6,7 +6,7 @@ export interface GameRecord {
   averageMark: number;
   price: number;
   imageBlob: string;
-  discount: number;
+  discountPrice: number;
 }
 export interface FullGameRecord extends GameRecord {
   tags: Tag[];
@@ -40,8 +40,12 @@ export interface Vote {
   vote: boolean;
 }
 
-export function loadPictures(gamesList: any, setGameRecords: Function) {
-  gamesList.forEach((game: any) => {
+export function loadPictures(
+  gamesList: GameRecord[],
+  setGameRecords: Function
+) {
+  console.log('Games list', gamesList);
+  gamesList.forEach((game: GameRecord) => {
     let picUrl = picturesUrl + game.name + '/shortcut';
     fetch(picUrl)
       .then((response) => response.blob())
@@ -64,11 +68,16 @@ export function loadGamewRecords(
   fetch(url, requestInfo)
     .then((response) => response.json())
     .then((json) => {
+      console.log(json);
       if (json) {
         loadPictures(json, setGameRecords);
       } else {
         setGameRecords({});
       }
+    })
+    .catch((reason) => {
+      alert('You have to login');
+      setGameRecords([]);
     });
 }
 

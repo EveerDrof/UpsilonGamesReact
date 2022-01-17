@@ -174,6 +174,7 @@ export function GameRecordView({
   if (!isLoaded) {
     return <LoadingScreen />;
   }
+  let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
     <div>
       <div id='top-info'>
@@ -184,8 +185,24 @@ export function GameRecordView({
         </div>
         <div id='right-info-column'>
           <h1>{gameRecord.name}</h1>
-          <h1>Price : {gameRecord.price}</h1>
-          {buyingBtn}
+          <h1>
+            Price : {gameRecord.discountPrice}{' '}
+            {
+              <span
+                style={
+                  discountFound
+                    ? {
+                        textDecoration: 'line-through',
+                        color: 'rgba(0, 0, 0, 0.5)',
+                      }
+                    : {}
+                }
+              >
+                {gameRecord.price}
+              </span>
+            }
+          </h1>
+          {localStorage.getItem('name') ? buyingBtn : <></>}
           <div id='mark-circle-bar'>
             {longGameData ? (
               <CircularProgressbar

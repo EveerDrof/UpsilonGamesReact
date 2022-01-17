@@ -36,6 +36,13 @@ function authGetHeader() {
       ),
   };
 }
+export function getPostAuthHeaders() {
+  return {
+    ...authGetHeader(),
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+}
 export {
   picturesDir,
   serverUrl,

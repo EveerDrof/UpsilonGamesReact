@@ -46,6 +46,7 @@ export function GameShortcut({
       additionalFunctional = <></>;
       break;
   }
+  let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
     <div className='gameShortcut'>
       <div
@@ -64,7 +65,21 @@ export function GameShortcut({
           className='gameShortcutImage'
           alt='game screenshot or logo'
         ></img>
-        <h4 className='gameShortcutPrice'>Price : {gameRecord.price}</h4>
+        <h4 className='gameShortcutPrice'>
+          Price : {discountFound ? gameRecord.discountPrice : ''}{' '}
+          <span
+            style={
+              discountFound
+                ? {
+                    textDecoration: 'line-through',
+                    color: 'rgba(0, 0, 0, 0.5)',
+                  }
+                : {}
+            }
+          >
+            {gameRecord.price}
+          </span>
+        </h4>
         <h4 className='gameShortcutMark'>Mark : {gameRecord.averageMark}</h4>
       </div>
       {additionalFunctional}
