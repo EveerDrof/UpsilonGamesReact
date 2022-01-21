@@ -45,16 +45,20 @@ export function loadPictures(
   setGameRecords: Function
 ) {
   console.log('Games list', gamesList);
-  gamesList.forEach((game: GameRecord) => {
-    let picUrl = picturesUrl + game.name + '/shortcut';
-    fetch(picUrl)
-      .then((response) => response.blob())
-      .then((blob) => {
-        game.imageBlob = URL.createObjectURL(blob);
-        console.log('List', gamesList);
-        setGameRecords([...(gamesList as Array<GameRecord>)]);
+  if (gamesList) {
+    if (gamesList.length > 0) {
+      gamesList.forEach((game: GameRecord) => {
+        let picUrl = picturesUrl + game.name + '/shortcut';
+        fetch(picUrl)
+          .then((response) => response.blob())
+          .then((blob) => {
+            game.imageBlob = URL.createObjectURL(blob);
+            console.log('List', gamesList);
+            setGameRecords([...(gamesList as Array<GameRecord>)]);
+          });
       });
-  });
+    }
+  }
 }
 export function loadGamewRecords(
   url: string,

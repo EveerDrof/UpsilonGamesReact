@@ -38,7 +38,7 @@
     align-items: center;
     width: 100%;
 }
-#buy-btn,#in-library-btn,#in-cart-btn{
+#buy-btn,#in-library-btn,#in-cart-btn,#mark-setter-button{
     border: none;
     border-radius: 20px;
     width: 10vw;
@@ -50,7 +50,7 @@
     cursor: pointer;
 
 }
-#in-library-btn{
+#in-library-btn,#mark-setter-button{
     background-color: greenyellow;
 }
 #in-cart-btn{
@@ -62,6 +62,7 @@
     padding: 10px;
 }
 #mark-circle-bar{
+    margin-top: 10px;
     height: 100px;
     width: 100px;
 }
@@ -75,9 +76,6 @@
     flex-direction: row;
     justify-content: center;
     width: 500px;
-}
-#mark-setter-button{
-    display: flex;
 }
 .mark-slider-setter{
     width: 300px;
@@ -96,4 +94,14 @@
     border-radius: 20px;
     cursor: pointer;
     text-align: center;
+}
+
+#your-mark-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#mark-setter-button{
+    cursor: pointer;
 }

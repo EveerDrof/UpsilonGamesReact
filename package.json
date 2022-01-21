@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.9",
     "dateformat": "^5.0.2",
     "jest": "^26.6.0",
+    "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-carousel-minimal": "^1.4.1",
     "react-circular-progressbar": "^2.0.4",
@@ -26,10 +27,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run scss && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "scss": "node-sass ./src/scss -o ./src/styles/scss"
   },
   "eslintConfig": {
     "extends": [

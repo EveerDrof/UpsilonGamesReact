@@ -11,6 +11,7 @@ import {
 import { FullGameRecord, GameRecord } from './utils';
 import './styles/GameRecordView.css';
 import './styles/App.css';
+import './styles/scss/main.css';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -205,11 +206,20 @@ export function GameRecordView({
           {localStorage.getItem('name') ? buyingBtn : <></>}
           <div id='mark-circle-bar'>
             {longGameData ? (
-              <CircularProgressbar
-                value={longGameData!.averageMark}
-                maxValue={100}
-                text={`${longGameData!.averageMark}`}
-              />
+              <div>
+                <CircularProgressbar
+                  value={longGameData!.averageMark}
+                  maxValue={100}
+                  text={`${longGameData!.averageMark}`}
+                />
+                {/* <div className='set-size charts-container'>
+                  <div className='pie-wrapper pie-wrapper--solid progress-65'>
+                    <span className='label'>
+                      65<span className='smaller'>%</span>
+                    </span>
+                  </div>
+                </div> */}
+              </div>
             ) : (
               <></>
             )}
@@ -218,7 +228,8 @@ export function GameRecordView({
             <div>
               {gameStatusInLibrary === 'inLibrary' ? (
                 <>
-                  <h1>
+                  <h1 id='your-mark-text'>
+                    Your mark{' '}
                     {fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}
                   </h1>
                   <div id='mark-setter-column'>
@@ -252,7 +263,7 @@ export function GameRecordView({
           )}
         </div>
       </div>
-      <h2>Tags : </h2>
+      <h2 style={{ textAlign: 'center' }}>Tags : </h2>
       <div id='tag-wrapper'>{tagsList}</div>
       {longGameData ? (
         <p id='description'>

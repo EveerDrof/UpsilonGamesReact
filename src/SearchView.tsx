@@ -1,15 +1,17 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Select from 'react-select';
+import { AddingLine } from './AdminElements/AddingLine';
 import { allTagsUrl, selectGamesUrl, tagsUrl } from './constants';
 import { GamesList } from './GamesList';
 import './styles/SearchView.css';
 import { FullGameRecord, loadPictures, Tag } from './utils';
 export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
-  const [minMark, setMinMark] = useState(0);
+  const [minMark, setMinMark] = useState(-2);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(99999);
   const [namePart, setNamePart] = useState('');
   const [tags, setTags]: [Tag[], Function] = useState([]);
+  const [minDiscountPercent, setMinDiscountPercent] = useState(0);
   const [selectedTags, setSelectedTags]: [
     { label: string; value: string }[],
     Function
@@ -30,7 +32,7 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
     const tagsString = selectedTags.map((t) => t.value).join();
     const url =
       `${selectGamesUrl}?tags=${tagsString}&minMark=${minMark}&minPrice=${minPrice}&` +
-      `namePart=${namePart}&maxPrice=${maxPrice}`;
+      `namePart=${namePart}&maxPrice=${maxPrice}&minDiscountPercent=${minDiscountPercent}`;
     fetch(url)
       .then((data) => data.json())
       .then((json) => {
@@ -49,34 +51,27 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
     <div id='search-view-wrapper'>
       <div className='search-block'>
         <div className='search-parameters'>
-          <h1>Min mark</h1>
-          <input
+          <AddingLine
+            fieldName='Min mark'
             type='number'
-            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-              setMinMark(Number.parseInt(evt.target.value));
-            }}
+            setResult={setMinMark}
           />
-          <h1>Min price</h1>
-          <input
+          <AddingLine
+            fieldName='Min price'
             type='number'
-            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-              setMinPrice(Number.parseFloat(evt.target.value));
-            }}
+            setResult={setMinPrice}
           />
-          <h1>Max price</h1>
-          <input
+          <AddingLine
+            fieldName='Max price'
             type='number'
-            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-              setMaxPrice(Number.parseFloat(evt.target.value));
-            }}
+            setResult={setMaxPrice}
           />
-          <h1>Name part</h1>
-          <input
-            type='text'
-            onChange={(evt: ChangeEvent<HTMLInputElement>) => {
-              setNamePart(evt.target.value);
-            }}
+          <AddingLine
+            fieldName='Min discount percent'
+            type='number'
+            setResult={setMinDiscountPercent}
           />
+          <AddingLine fieldName='Name part' setResult={setNamePart} />
           <div id='select-block'>
             <Select
               options={tags}

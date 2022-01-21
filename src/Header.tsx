@@ -19,7 +19,9 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
     Function
   ] = useState([]);
   function getSearchData(namePart: string) {
-    let url = `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=0&namePart=${namePart}`;
+    let url =
+      `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=0&namePart=${namePart}` +
+      `&minDiscountPercent=0`;
     fetch(url)
       .then((data) => data.json())
       .then((json) => {
@@ -30,13 +32,15 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           label: advancedSearchName,
         });
         if (json) {
-          json.forEach((val: GameRecord) => {
-            searchGamesNames.push({
-              key: val.name,
-              value: val.name,
-              label: val.name,
+          if (json.length >= 0) {
+            json.forEach((val: GameRecord) => {
+              searchGamesNames.push({
+                key: val.name,
+                value: val.name,
+                label: val.name,
+              });
             });
-          });
+          }
         }
         console.log('Data for search', searchGamesNames);
 
@@ -97,7 +101,6 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           }}
         />
       </div>
-      <button className='header-btn'>Wishlist</button>
       <button
         className='header-btn'
         onClick={() => {
