@@ -21,7 +21,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
   function getSearchData(namePart: string) {
     let url =
       `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=0&namePart=${namePart}` +
-      `&minDiscountPercent=0`;
+      `&minDiscountPercent=0&sortType=`;
     fetch(url)
       .then((data) => data.json())
       .then((json) => {

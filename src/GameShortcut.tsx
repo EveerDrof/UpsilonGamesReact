@@ -48,8 +48,9 @@ export function GameShortcut({
   }
   let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
-    <div className='gameShortcut'>
+    <div>
       <div
+        className='gameShortcut'
         onClick={() => {
           setCurrentView(
             <GameRecordView

@@ -4,7 +4,12 @@ import { AddingLine } from './AdminElements/AddingLine';
 import { allTagsUrl, selectGamesUrl, tagsUrl } from './constants';
 import { GamesList } from './GamesList';
 import './styles/SearchView.css';
-import { FullGameRecord, loadPictures, Tag } from './utils';
+import {
+  fetchAndSetSelectedGames,
+  FullGameRecord,
+  loadPictures,
+  Tag,
+} from './utils';
 export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
   const [minMark, setMinMark] = useState(-2);
   const [minPrice, setMinPrice] = useState(0);
@@ -29,22 +34,14 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
       });
   }, []);
   function search() {
-    const tagsString = selectedTags.map((t) => t.value).join();
-    const url =
-      `${selectGamesUrl}?tags=${tagsString}&minMark=${minMark}&minPrice=${minPrice}&` +
-      `namePart=${namePart}&maxPrice=${maxPrice}&minDiscountPercent=${minDiscountPercent}`;
-    fetch(url)
-      .then((data) => data.json())
-      .then((json) => {
-        if (json) {
-          if (json.length == 0) {
-            setGames([]);
-          }
-          loadPictures(json, setGames);
-        } else {
-          setGames([]);
-        }
-      });
+    fetchAndSetSelectedGames(setGames, {
+      minDiscountPercent: minDiscountPercent,
+      minMark: minMark,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      namePart: namePart,
+      tags: tags.map((t) => t.name),
+    });
   }
 
   return (

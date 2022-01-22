@@ -3,11 +3,20 @@ import { GamesList } from './GamesList';
 import { Jumper } from './Jumper';
 import { mainMenuGamesTopUrl, picturesUrl } from './constants';
 import { Carousel } from 'react-responsive-carousel';
-import { loadGamewRecords } from './utils';
+import {
+  fetchAndSetSelectedGames,
+  GameRecord,
+  loadGamewRecords as loadGameRecords,
+} from './utils';
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   const [showJumper, setShowJumper] = useState(false);
   const [mainMenuGamesRecords, setMainMenuGamesRecords]: any = useState();
+  const [discountedGames, setDiscountedGames]: [GameRecord[], Function] =
+    useState([]);
+  const [topRatedGames, setTopRatedGames]: [GameRecord[], Function] = useState(
+    []
+  );
   const handleScroll = (e: any) => {
     const body = e.srcElement.body;
     if (body) {
@@ -21,7 +30,14 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    loadGamewRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
+    loadGameRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
+    fetchAndSetSelectedGames(setDiscountedGames, {
+      minDiscountPercent: 1,
+      sortType: 'discount',
+    });
+    fetchAndSetSelectedGames(setTopRatedGames, {
+      sortType: 'mark',
+    });
   }, []);
   let carouselItems: JSX.Element[] = [
     <div
@@ -29,16 +45,19 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
       style={{ backgroundImage: 'url(/pictures/hl.jpg)' }}
       className='carouselElement'
     >
-      <h1>Скидки</h1>
-      <button className='carouselButton'>Магазин</button>
+      <h1 className='carousel-header'>Скидки</h1>
+      <GamesList
+        setCurrentView={setCurrentView}
+        gamesRecords={discountedGames}
+      />
     </div>,
     <div
       key={2}
       style={{ backgroundImage: 'url(/pictures/ds.jpg)' }}
       className='carouselElement'
     >
-      <h1>Списки лучших игр</h1>
-      <button className='carouselButton'>Посмотреть</button>
+      <h1 className='carousel-header'>Списки лучших игр</h1>
+      <GamesList setCurrentView={setCurrentView} gamesRecords={topRatedGames} />
     </div>,
   ];
   let jumper = <></>;

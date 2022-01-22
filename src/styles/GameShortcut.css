@@ -1,18 +1,19 @@
 .gameShortcut{
-    height: auto;
+    height: 30vh;
     width: 100%;
     background-color: rgb(77, 82, 87);
     border-radius: 10px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
 }
 .gameShortcutImage{
-    height: auto;
-    width: 100%;
-    margin: auto;
+    max-height: 65% !important;
+    width: auto !important;
+    max-width: 100%;
+    align-self: center;
 }
 h4{
     margin-top: 0.3vh;

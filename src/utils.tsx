@@ -1,4 +1,4 @@
-import { picturesUrl } from './constants';
+import { picturesUrl, selectGamesUrl } from './constants';
 
 export interface GameRecord {
   name: string;
@@ -44,7 +44,6 @@ export function loadPictures(
   gamesList: GameRecord[],
   setGameRecords: Function
 ) {
-  console.log('Games list', gamesList);
   if (gamesList) {
     if (gamesList.length > 0) {
       gamesList.forEach((game: GameRecord) => {
@@ -72,7 +71,6 @@ export function loadGamewRecords(
   fetch(url, requestInfo)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json);
       if (json) {
         loadPictures(json, setGameRecords);
       } else {
@@ -84,9 +82,68 @@ export function loadGamewRecords(
       setGameRecords([]);
     });
 }
-
 export function removeUserStorageData() {
   localStorage.removeItem('name');
   localStorage.removeItem('password');
   localStorage.removeItem('userId');
+}
+interface selctedGamesInputParameter {
+  tags?: string[];
+  minMark?: number;
+  minPrice?: number;
+  namePart?: string;
+  maxPrice?: number;
+  minDiscountPercent?: number;
+  sortType?: string;
+}
+export function fetchAndSetSelectedGames(
+  setGames: Function,
+  options: selctedGamesInputParameter
+) {
+  let {
+    maxPrice,
+    minDiscountPercent,
+    minMark,
+    minPrice,
+    namePart,
+    tags,
+    sortType,
+  } = {
+    ...options,
+  };
+  if (!maxPrice) {
+    maxPrice = 99999999;
+  }
+  if (!minDiscountPercent) {
+    minDiscountPercent = -1;
+  }
+  if (!minMark) {
+    minMark = -2;
+  }
+  if (!minPrice) {
+    minPrice = -1;
+  }
+  if (!namePart) {
+    namePart = '';
+  }
+  let tagsString = '';
+  if (tags) {
+    tagsString = tags.join();
+  }
+  if (!sortType) {
+    sortType = '';
+  }
+  let url =
+    `${selectGamesUrl}?tags=${tagsString}&minMark=${minMark}&minPrice=${minPrice}` +
+    `&namePart=${namePart}&maxPrice=${maxPrice}&minDiscountPercent=${minDiscountPercent}` +
+    `&sortType=${sortType}`;
+  fetch(url)
+    .then((data) => data.json())
+    .then((json) => {
+      if (json && json.length > 0) {
+        loadPictures(json, setGames);
+      } else {
+        setGames({});
+      }
+    });
 }
