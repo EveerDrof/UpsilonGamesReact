@@ -1,22 +1,34 @@
+import '../styles/AdminElements/AddingLine.css';
 export function AddingLine({
   fieldName,
   setResult,
-  type,
+  valueType,
+  isVertical,
 }: {
   fieldName: string;
   setResult: Function;
-  type?: string;
+  valueType?: string;
+  isVertical?: boolean;
 }) {
-  if (!type) {
-    type = 'text';
+  if (!valueType) {
+    valueType = 'text';
+  }
+  if (isVertical == undefined) {
+    isVertical = true;
   }
   return (
-    <div>
+    <div
+      className='adding-line'
+      style={{
+        flexDirection: isVertical ? 'column' : 'row',
+      }}
+    >
       <h1>{fieldName}</h1>
       <input
-        type={type}
+        className='adding-line-input-elment'
+        type={valueType}
         onChange={(evt) => {
-          if (type == 'file') {
+          if (valueType == 'file') {
             setResult(evt.target.files![0]);
           } else {
             setResult(evt.target.value);

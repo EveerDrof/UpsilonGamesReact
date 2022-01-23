@@ -34,12 +34,12 @@ export function GameAddingForm() {
       <AddingLine fieldName='Game name' setResult={setGameName} />
       <AddingLine fieldName='Description' setResult={setGameDescription} />
       <AddingLine
-        type='number'
+        valueType='number'
         fieldName='Game price'
         setResult={setGamePrice}
       />
       <AddingLine
-        type='number'
+        valueType='number'
         fieldName='Game discount'
         setResult={setGameDiscount}
       />

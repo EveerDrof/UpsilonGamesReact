@@ -22,10 +22,14 @@ export function ShortcutAddingForm() {
   return (
     <div className='admin-adding-form-wrapper'>
       <AddingLine fieldName='Game name' setResult={setGameName} />
-      <AddingLine fieldName='Picture' type='file' setResult={setGameShortcut} />
+      <AddingLine
+        fieldName='Picture'
+        valueType='file'
+        setResult={setGameShortcut}
+      />
       <AddingLine
         fieldName='Is shortcut'
-        type='checkbox'
+        valueType='checkbox'
         setResult={setIsShortcut}
       />
       <PostDataButton text='Post shorcut' sender={sendShortcut} />

@@ -188,20 +188,18 @@ export function GameRecordView({
           <h1>{gameRecord.name}</h1>
           <h1>
             Price : {gameRecord.discountPrice}{' '}
-            {
+            {discountFound ? (
               <span
-                style={
-                  discountFound
-                    ? {
-                        textDecoration: 'line-through',
-                        color: 'rgba(0, 0, 0, 0.5)',
-                      }
-                    : {}
-                }
+                style={{
+                  textDecoration: 'line-through',
+                  color: 'rgba(0, 0, 0, 0.5)',
+                }}
               >
                 {gameRecord.price}
               </span>
-            }
+            ) : (
+              <></>
+            )}
           </h1>
           {localStorage.getItem('name') ? buyingBtn : <></>}
           <div id='mark-circle-bar'>

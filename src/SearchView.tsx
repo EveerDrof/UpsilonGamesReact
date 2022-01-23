@@ -40,7 +40,7 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
       minPrice: minPrice,
       maxPrice: maxPrice,
       namePart: namePart,
-      tags: tags.map((t) => t.name),
+      tags: selectedTags.map((t) => t.value),
     });
   }
 
@@ -50,25 +50,33 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
         <div className='search-parameters'>
           <AddingLine
             fieldName='Min mark'
-            type='number'
+            valueType='number'
             setResult={setMinMark}
+            isVertical={false}
           />
           <AddingLine
             fieldName='Min price'
-            type='number'
+            valueType='number'
             setResult={setMinPrice}
+            isVertical={false}
           />
           <AddingLine
             fieldName='Max price'
-            type='number'
+            valueType='number'
             setResult={setMaxPrice}
+            isVertical={false}
           />
           <AddingLine
             fieldName='Min discount percent'
-            type='number'
+            valueType='number'
             setResult={setMinDiscountPercent}
+            isVertical={false}
           />
-          <AddingLine fieldName='Name part' setResult={setNamePart} />
+          <AddingLine
+            fieldName='Name part'
+            isVertical={false}
+            setResult={setNamePart}
+          />
           <div id='select-block'>
             <Select
               options={tags}
