@@ -112,7 +112,6 @@ export function GameRecordView({
     fetch(idsUrl, {})
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
           fetch(picturesUrl + data[i].id)
             .then((response) => response.blob())
