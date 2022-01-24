@@ -6,6 +6,8 @@ export function Jumper() {
       onClick={() => {
         window.scrollTo(0, 0);
       }}
-    >/\</div>
+    >
+      /\
+    </div>
   );
 }
