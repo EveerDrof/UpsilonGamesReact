@@ -11,7 +11,6 @@ import {
 import { FullGameRecord, GameRecord } from './utils';
 import './styles/GameRecordView.css';
 import './styles/App.css';
-import './styles/scss/main.css';
 
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
