@@ -12,10 +12,16 @@ import { FullGameRecord, GameRecord } from './utils';
 import './styles/GameRecordView.css';
 import './styles/App.css';
 
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ReviewsSection } from './ReviewsSection';
 import { LoadingScreen } from './LoadingScreen';
+import {
+  darkColor,
+  mainColor,
+  secondaryColor,
+  thirdColor,
+} from './Colors/colors';
 
 export function GameRecordView({
   gameRecord,
@@ -145,7 +151,11 @@ export function GameRecordView({
   let buyingBtn;
   switch (gameStatusInLibrary) {
     case 'inLibrary':
-      buyingBtn = <button id='in-library-btn'>In library</button>;
+      buyingBtn = (
+        <button id='in-library-btn' style={{ backgroundColor: secondaryColor }}>
+          In library
+        </button>
+      );
       break;
     case 'inCart':
       buyingBtn = <button id='in-cart-btn'>In cart</button>;
@@ -167,7 +177,14 @@ export function GameRecordView({
   console.log('Status', gameStatusInLibrary);
   let tagsList: JSX.Element[] = [];
   longGameData?.tags.forEach((tag) => {
-    tagsList.push(<h4 className='tag'>{tag.name}</h4>);
+    tagsList.push(
+      <h4
+        className='tag'
+        style={{ backgroundColor: secondaryColor, color: darkColor }}
+      >
+        {tag.name}
+      </h4>
+    );
   });
   console.log('Bool is ', isLoaded);
   if (!isLoaded) {
@@ -175,7 +192,7 @@ export function GameRecordView({
   }
   let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
-    <div>
+    <div style={{ backgroundColor: thirdColor }}>
       <div id='top-info'>
         <div id='screenshots-carousel'>
           <Carousel verticalSwipe='natural' dynamicHeight={false}>
@@ -207,14 +224,12 @@ export function GameRecordView({
                   value={longGameData!.averageMark}
                   maxValue={100}
                   text={`${longGameData!.averageMark}`}
+                  styles={buildStyles({
+                    textColor: mainColor,
+                    textSize: '35px',
+                    pathColor: mainColor,
+                  })}
                 />
-                {/* <div className='set-size charts-container'>
-                  <div className='pie-wrapper pie-wrapper--solid progress-65'>
-                    <span className='label'>
-                      65<span className='smaller'>%</span>
-                    </span>
-                  </div>
-                </div> */}
               </div>
             ) : (
               <></>
@@ -242,6 +257,7 @@ export function GameRecordView({
                     </div>
                     <button
                       id='mark-setter-button'
+                      style={{ backgroundColor: secondaryColor }}
                       onClick={() => {
                         sendMarkToServer(userMark);
                       }}
@@ -262,7 +278,7 @@ export function GameRecordView({
       <h2 style={{ textAlign: 'center' }}>Tags : </h2>
       <div id='tag-wrapper'>{tagsList}</div>
       {longGameData ? (
-        <p id='description'>
+        <p id='description' style={{ backgroundColor: mainColor }}>
           Description : <br /> {longGameData.description}
         </p>
       ) : (

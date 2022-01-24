@@ -1,5 +1,4 @@
-#review-adding-btn{
-    background-color: greenyellow;
+#review-adding-btn,#send-review-btn{
     border-radius: 30px;
     height: 10vh;
     width: 10vh;
@@ -8,8 +7,7 @@
     cursor: pointer;
     transition: 100ms;
 }
-#review-adding-btn:active{
-    background-color: yellow;
+#review-adding-btn:active,#send-review-btn:active{
     border: 5px solid teal;
 }
 #review-text-area{
@@ -17,7 +15,17 @@
     height: 50vh;
 }
 #send-review-btn{
-    background-color: turquoise;
     width: 5vmax;
     height: 5vmax;
+    font-size: 4vh;
+}
+#review-adding-form-wrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#review-adding-form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

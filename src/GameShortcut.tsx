@@ -1,3 +1,9 @@
+import {
+  darkColor,
+  mainColor,
+  secondaryColor,
+  thirdColor,
+} from './Colors/colors';
 import { authGetHeader, deleteFromCartUrl } from './constants';
 import { GameRecordView } from './GameRecordView';
 import './styles/GameShortcut.css';
@@ -34,6 +40,7 @@ export function GameShortcut({
     case 'cart':
       additionalFunctional = (
         <button
+          className='additional-functionality-btn'
           onClick={() => {
             requestDeleteFromCartAndUpdate();
           }}
@@ -47,10 +54,16 @@ export function GameShortcut({
       break;
   }
   let discountFound = gameRecord.discountPrice != gameRecord.price;
+  let additionalStyle: any = {};
+  if (type == 'cart') {
+    additionalStyle.borderBottomLeftRadius = '0';
+    additionalStyle.borderBottomRightRadius = '0';
+  }
   return (
     <div>
       <div
         className='gameShortcut'
+        style={{ backgroundColor: thirdColor, ...additionalStyle }}
         onClick={() => {
           setCurrentView(
             <GameRecordView
@@ -60,13 +73,15 @@ export function GameShortcut({
           );
         }}
       >
-        <h4 className='gameShortcutName'>{gameRecord.name}</h4>
+        <h4 className='gameShortcutName' style={{ color: mainColor }}>
+          {gameRecord.name}
+        </h4>
         <img
           src={gameRecord.imageBlob}
           className='gameShortcutImage'
           alt='game screenshot or logo'
         ></img>
-        <h4 className='gameShortcutPrice'>
+        <h4 className='gameShortcutPrice' style={{ color: mainColor }}>
           Price : {discountFound ? gameRecord.discountPrice : ''}{' '}
           <span
             style={
@@ -81,7 +96,9 @@ export function GameShortcut({
             {gameRecord.price}
           </span>
         </h4>
-        <h4 className='gameShortcutMark'>Mark : {gameRecord.averageMark}</h4>
+        <h4 className='gameShortcutMark' style={{ color: mainColor }}>
+          Mark : {gameRecord.averageMark}
+        </h4>
       </div>
       {additionalFunctional}
     </div>

@@ -22,11 +22,9 @@
     background: transparent;
     cursor: pointer;
 }
-
 .active-form-btn{
-    background-image:linear-gradient(to top,rgb(168,160,217) 10%, white 30%);
+    background-color: white !important;
 }
-
 .label{
     color: black;
     align-self: flex-start;

@@ -10,6 +10,7 @@
     background-color: bisque;
     color: black;
     border-radius: 20px;
+    padding: 20px;
     text-align: left;
     cursor: pointer;
 }

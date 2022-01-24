@@ -1,3 +1,4 @@
+import { darkColor } from '../Colors/colors';
 import '../styles/AdminElements/AddingLine.css';
 export function AddingLine({
   fieldName,
@@ -23,7 +24,7 @@ export function AddingLine({
         flexDirection: isVertical ? 'column' : 'row',
       }}
     >
-      <h1>{fieldName}</h1>
+      <h1 style={{ color: darkColor }}>{fieldName}</h1>
       <input
         className='adding-line-input-elment'
         type={valueType}

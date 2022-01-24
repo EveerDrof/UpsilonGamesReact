@@ -10,6 +10,7 @@ import './styles/ReviewsSection.css';
 import { FullGameRecord, Review } from './utils';
 import { PostHeader } from './PostHeader';
 import Select from 'react-select';
+import { grayColor } from './Colors/colors';
 export function ReviewsSection({
   game,
   isGameInLibrary,
@@ -56,7 +57,7 @@ export function ReviewsSection({
         });
       }
       reviewsBlocks.push(
-        <div className='review-block'>
+        <div className='review-block' style={{ backgroundColor: grayColor }}>
           <PostHeader
             post={val}
             setCurrentView={setCurrentView}

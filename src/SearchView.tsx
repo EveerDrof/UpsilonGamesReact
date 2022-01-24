@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import Select from 'react-select';
 import { AddingLine } from './AdminElements/AddingLine';
+import { darkColor, mainColor } from './Colors/colors';
 import { allTagsUrl, selectGamesUrl, tagsUrl } from './constants';
 import { GamesList } from './GamesList';
 import './styles/SearchView.css';
@@ -45,7 +46,7 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
   }
 
   return (
-    <div id='search-view-wrapper'>
+    <div id='search-view-wrapper' style={{ backgroundColor: mainColor }}>
       <div className='search-block'>
         <div className='search-parameters'>
           <AddingLine
@@ -87,10 +88,12 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
               }}
             />
           </div>
-          <button onClick={search}>Search</button>
+          <button id='selection-search-btn' onClick={search}>
+            Search
+          </button>
         </div>
         <div id='selected-games'>
-          <h1>Result</h1>
+          <h1 style={{ color: darkColor }}>Result</h1>
           {games.length > 0 ? (
             <GamesList gamesRecords={games} setCurrentView={setCurrentView} />
           ) : (

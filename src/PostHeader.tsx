@@ -3,6 +3,7 @@ import './styles/PostHeader.css';
 import dateFormat from 'dateformat';
 import { CommentsView } from './CommentsView';
 import { Review } from './utils';
+import { mainColor } from './Colors/colors';
 export function PostHeader({
   post,
   setCurrentView,
@@ -35,6 +36,7 @@ export function PostHeader({
       <h2 className='header-time'>{formatedDate}</h2>
       <div className='votes-block'>
         <button
+          style={{ backgroundColor: mainColor }}
           className={isLiked ? 'vote-set' : 'vote-btn'}
           onClick={() => {
             sendVote(true);
@@ -42,8 +44,9 @@ export function PostHeader({
         >
           +
         </button>
-        <p>{likesNumber}</p>
+        <p className='votes-counter'>{likesNumber}</p>
         <button
+          style={{ backgroundColor: mainColor }}
           className={isDisliked ? 'vote-set' : 'vote-btn'}
           onClick={() => {
             sendVote(false);
@@ -51,10 +54,12 @@ export function PostHeader({
         >
           -
         </button>
-        <p>{dislikesNumber}</p>
+        <p className='votes-counter'>{dislikesNumber}</p>
       </div>
       {isCommentsButtonOnOrAddComment ? (
         <button
+          style={{ backgroundColor: mainColor }}
+          className='add-comment-btn'
           onClick={() => {
             setCurrentView(
               <CommentsView review={post} setCurrentView={setCurrentView} />
@@ -65,6 +70,8 @@ export function PostHeader({
         </button>
       ) : (
         <button
+          className='add-comment-btn'
+          style={{ backgroundColor: mainColor }}
           onClick={() => {
             if (setIsAddingFormOpened) {
               setIsAddingFormOpened(!isAddingFormOpened);

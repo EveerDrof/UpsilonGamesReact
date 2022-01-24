@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CabinetView } from './CabinetView';
+import { mainColor, thirdColor } from './Colors/colors';
 import {
   authGetHeader,
   usersGetLoggedUserDataUrl,
@@ -28,7 +29,7 @@ export function LoginRegisterForm({
     })
       .then((response) => {
         if (response.status == 200) {
-          setCurrentView(<CabinetView />);
+          setCurrentView(<CabinetView setCurrentView={setCurrentView} />);
         } else {
           removeUserStorageData();
           alert('Wrong user name or password');
@@ -73,12 +74,14 @@ export function LoginRegisterForm({
       <div id='form-switcher'>
         <button
           id='register-btn'
+          style={{ backgroundColor: mainColor }}
           className={formType === 'register' ? 'active-form-btn' : 'switch-btn'}
           onClick={onBtnFormSwtiecherClick}
         >
           Register
         </button>
         <button
+          style={{ backgroundColor: mainColor }}
           onClick={onBtnFormSwtiecherClick}
           id='login-btn'
           className={formType === 'login' ? 'active-form-btn' : 'switch-btn'}

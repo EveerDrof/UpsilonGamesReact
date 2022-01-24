@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Cabinet } from './Cabinet';
 import { gamesUrl, searchGameUrl } from './constants';
-import { LibraryView } from './LibraryView';
 import { LoginRegister } from './LoginRegister';
 import { MainView } from './MainView';
 import './styles/Header.css';
@@ -10,6 +9,7 @@ import Select, { InputActionMeta, SingleValue } from 'react-select';
 import { GameRecordView } from './GameRecordView';
 import { LoadingScreen } from './LoadingScreen';
 import { SearchView } from './SearchView';
+import { darkColor, secondaryColor } from './Colors/colors';
 
 const advancedSearchName = 'Advanced Search';
 
@@ -55,9 +55,12 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
     setCurrentView(<LoginRegister setCurrentView={setCurrentView} />);
   }
   return (
-    <div id='header'>
-      <button className='header-btn'>Logo</button>
+    <div id='header' style={{ backgroundColor: secondaryColor }}>
+      <button className='header-btn' style={{ color: darkColor }}>
+        Logo
+      </button>
       <button
+        style={{ color: darkColor }}
         className='header-btn'
         onClick={() => {
           setCurrentView(<MainView setCurrentView={setCurrentView} />);
@@ -102,14 +105,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
         />
       </div>
       <button
-        className='header-btn'
-        onClick={() => {
-          setCurrentView(<LibraryView setCurrentView={setCurrentView} />);
-        }}
-      >
-        Library
-      </button>
-      <button
+        style={{ color: darkColor }}
         className='header-btn'
         onClick={() => {
           setCurrentView(<Cabinet />);
@@ -118,7 +114,11 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
         Cabinet
       </button>
       {localStorage.getItem('password') ? (
-        <button className='header-btn' onClick={logout}>
+        <button
+          className='header-btn'
+          onClick={logout}
+          style={{ color: darkColor }}
+        >
           Logout
         </button>
       ) : (
