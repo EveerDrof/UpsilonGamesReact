@@ -1,0 +1,9 @@
+.adding-line{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.adding-line-input-elment{
+    max-height: 50px;
+}
