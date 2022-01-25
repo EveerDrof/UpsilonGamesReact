@@ -10,6 +10,7 @@ import {
 } from './utils';
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showJumper, setShowJumper] = useState(false);
   const [mainMenuGamesRecords, setMainMenuGamesRecords]: any = useState();
   const [discountedGames, setDiscountedGames]: [GameRecord[], Function] =
@@ -20,7 +21,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   const handleScroll = (e: any) => {
     const body = e.srcElement.body;
     if (body) {
-      if (body.getBoundingClientRect().bottom <= window.innerHeight - 300) {
+      if (body.getBoundingClientRect().bottom <= window.innerHeight * 2) {
         setShowJumper(true);
       } else {
         setShowJumper(false);
@@ -29,6 +30,11 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   };
 
   useEffect(() => {
+    if (window.innerWidth < 1000) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
     window.addEventListener('scroll', handleScroll);
     loadGameRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
     fetchAndSetSelectedGames(setDiscountedGames, {
@@ -42,7 +48,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   let carouselItems: JSX.Element[] = [
     <div
       key={1}
-      style={{ backgroundImage: 'url(/pictures/hl.jpg)' }}
+      style={{ backgroundImage: isMobile ? '' : 'url(/pictures/hl.jpg)' }}
       className='carouselElement'
     >
       <h1 className='carousel-header'>Discounts</h1>
@@ -53,7 +59,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
     </div>,
     <div
       key={2}
-      style={{ backgroundImage: 'url(/pictures/ds.jpg)' }}
+      style={{ backgroundImage: isMobile ? '' : 'url(/pictures/ds.jpg)' }}
       className='carouselElement'
     >
       <h1 className='carousel-header'>Top rated games</h1>

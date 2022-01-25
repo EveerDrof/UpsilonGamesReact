@@ -10,4 +10,5 @@
   font-size: 5vh;
   cursor: pointer;
   text-align: center;
+  z-index: 5;
 }

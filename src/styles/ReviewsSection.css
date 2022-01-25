@@ -23,3 +23,9 @@
     width: 30%;
     margin-top: 10px;
 }
+
+@media (max-width: 1000px){
+    #reviews-layout{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

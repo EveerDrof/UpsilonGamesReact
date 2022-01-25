@@ -7,3 +7,8 @@
     overflow: hidden;
     position: relative;
 }
+@media (max-width:  1000px) {
+    .gamesList{
+        grid-template-columns: repeat(2,1fr);
+    }
+}

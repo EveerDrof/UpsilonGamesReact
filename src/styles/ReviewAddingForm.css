@@ -15,8 +15,8 @@
     height: 50vh;
 }
 #send-review-btn{
-    width: 5vmax;
-    height: 5vmax;
+    width: fit-content;
+    height: fit-content;
     font-size: 4vh;
 }
 #review-adding-form-wrapper{

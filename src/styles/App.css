@@ -38,7 +38,7 @@ body{
   width: 100%;
 }
 .carouselElement{
-  height: 90vh;
+  height: 92vh;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center;
@@ -60,4 +60,14 @@ h1,h2,h3,h4{
 .carousel-header{
   padding: 0;
   margin: 0;
+}
+/* .carousel-root,.carusel,.carousel-slider,.slider-wrapper,.axis-horizontal,
+.slide,.selected,.slider,.animated,.control-arrow{
+  max-height: 95vh;
+} */
+
+@media (max-width: 1000px){
+  .carouselElement{
+    height: fit-content;
+  }
 }
