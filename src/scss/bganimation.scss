@@ -4,15 +4,12 @@ $svg-color: #FFFFFF;
 
 .wrap{
 	perspective-origin: 50% 50%;
-	height: 0;
 }
 
 .svg{
 	stroke:$svg-color;
 	position:relative;
 	transform-style: preserve-3d;
-	bottom: 0;
-	right: 20%;
 }
 
 $total: 10;
@@ -27,8 +24,13 @@ $total: 10;
 		transform: scale(.3 * $i - .6) rotate(random(360) + deg);
 		z-index: 0;
 	  @keyframes raise#{$i} {
+		  from{
+			  left: 0;
+			  top: 0;
+		  }
 		  to{
-			 bottom:100%;
+			left: 100%;
+			right: 100%;
 			 transform: scale(.3 * $i - .6) rotate(random(360) + deg);
 			}
 		}
