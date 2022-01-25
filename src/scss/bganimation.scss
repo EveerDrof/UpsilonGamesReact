@@ -12,14 +12,16 @@ $svg-color: #FFFFFF;
 	position:relative;
 	transform-style: preserve-3d;
 	bottom: 0;
+	right: 20%;
 }
 
 $total: 10;
 @for $i from 1 through $total {
-	$scale:random(1) - .4;
+	$scale:random(2) - .4;
 	
 	.svg:nth-child(#{$i}){
-		left:random(80) * 1%;
+		
+		left:random(60) * 1%;
 		animation: raise#{$i} 6 + random(15) +s linear infinite;
 		animation-delay:random(5) - 5 + s;
 		transform: scale(.3 * $i - .6) rotate(random(360) + deg);

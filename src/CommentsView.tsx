@@ -54,11 +54,9 @@ export function CommentsView({
       init
     )
       .then((data) => {
-        console.log(data);
         return data.json();
       })
       .then((json) => {
-        console.log('Comments', json);
         setComments([]);
         setComments([...json]);
       });
