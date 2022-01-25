@@ -4,6 +4,7 @@ import { authGetHeader, commentsReviewsUrl } from './constants';
 import { Review, Comment } from './utils';
 import Select from 'react-select';
 import './styles/CommentsView.css';
+import { thirdColor } from './Colors/colors';
 
 export function CommentsView({
   review,
@@ -86,8 +87,10 @@ export function CommentsView({
   ];
   return (
     <div id='comments-view-wrapper'>
-      <div>
+      <div id='comments-view-head'>
         <button
+          id='root-comment-btn'
+          style={{ backgroundColor: thirdColor }}
           onClick={() => {
             setIsRootCommentAddingFormOpened(!isRootCommentAddingFormOpened);
           }}
@@ -95,13 +98,15 @@ export function CommentsView({
           {isRootCommentAddingFormOpened ? 'Close adding form' : 'Add comment'}
         </button>
         {isRootCommentAddingFormOpened ? (
-          <div>
+          <div id='root-comment-adding-form'>
             <textarea
               onChange={(val) => {
                 setRootCommentText(val.target.value);
               }}
             ></textarea>
             <button
+              id='root-comment-btn'
+              style={{ backgroundColor: thirdColor }}
               onClick={() => {
                 sendComment(review.id, -1, rootCommentText);
               }}

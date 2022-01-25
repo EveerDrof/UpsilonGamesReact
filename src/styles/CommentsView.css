@@ -1,4 +1,26 @@
-#comments-view-wrapper{
+#comments-view-wrapper,#comments-view-head,#root-comment-adding-form{
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+#comments-view-head,#root-comment-adding-form{
+    align-items: center;
+    width: 100%;
+}
+#root-comment-btn{
+    border-radius: 20px;
+    width: 300px;
+    height: 50px;
+    border-color: black;
+    border-style: solid;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+#root-comment-adding-form textarea{
+    width: 70%;
+    height: 25vh;
+}
+#comments-view-head > *,#root-comment-adding-form > *{
+    margin-top: 10px;
 }
