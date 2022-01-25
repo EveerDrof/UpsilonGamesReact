@@ -5,6 +5,8 @@
     background-color: rgb(77, 82, 87);
     align-items: center;
     height: 8vh;
+    z-index: 1;
+    position: relative;
 }
 .header-btn{
     cursor: pointer;

@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
-    "scss": "node-sass ./src/scss -o ./src/styles/scss"
+    "scss": "node-sass -w ./src/scss -o ./src/styles/scss &"
   },
   "eslintConfig": {
     "extends": [

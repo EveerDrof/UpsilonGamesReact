@@ -20,7 +20,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   const handleScroll = (e: any) => {
     const body = e.srcElement.body;
     if (body) {
-      if (body.getBoundingClientRect().bottom <= window.innerHeight + 100) {
+      if (body.getBoundingClientRect().bottom <= window.innerHeight - 300) {
         setShowJumper(true);
       } else {
         setShowJumper(false);
