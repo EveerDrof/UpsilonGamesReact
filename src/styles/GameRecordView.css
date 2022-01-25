@@ -91,7 +91,8 @@
 .tag{
     background-color: cadetblue;
     color: chartreuse;
-    max-width: 25vw;
+    max-width: 25vmin;
+    height: 6vh;
     min-height: 20px;
     border-radius: 20px;
     text-align: center;
@@ -135,5 +136,10 @@
     #screenshots-carousel{
         width: auto;
         height: auto;
+    }
+    #tag-wrapper{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 20px;
     }
 }

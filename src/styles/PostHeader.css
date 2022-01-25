@@ -5,7 +5,7 @@
     color: chocolate;
 }
 .review-header,.header-time{
-    font-size: 20px;
+    font-size: 3.5vmin;
 }
 .review-header{
     color: green;
@@ -15,8 +15,8 @@
     align-items: center;
 }
 .vote-btn,.vote-set{
-    height: 8vh;
-    width: 8vh;
+    height: 8vmin;
+    width: 8vmin;
     font-size: 4vh;
     border-color: black;
     border-radius: 7px;
@@ -30,9 +30,10 @@
     color: chocolate;
 }
 .votes-counter{
-    font-size: 20px;
+    font-size: 3.0vmin;
 }
 .add-comment-btn{
     border: black 3px solid;
     border-radius: 10px;
+    font-size: 3.0vmin;
 }
