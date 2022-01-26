@@ -6,12 +6,12 @@ import { Carousel } from 'react-responsive-carousel';
 import {
   fetchAndSetSelectedGames,
   GameRecord,
+  getIsMobile,
   loadGamewRecords as loadGameRecords,
 } from './utils';
 import { darkColor } from './Colors/colors';
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [showJumper, setShowJumper] = useState(false);
   const [mainMenuGamesRecords, setMainMenuGamesRecords]: any = useState();
   const [discountedGames, setDiscountedGames]: [GameRecord[], Function] =
@@ -31,11 +31,6 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   };
 
   useEffect(() => {
-    if (window.innerWidth < 1000) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
     window.addEventListener('scroll', handleScroll);
     loadGameRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
     fetchAndSetSelectedGames(setDiscountedGames, {
@@ -46,6 +41,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
       sortType: 'mark',
     });
   }, []);
+  const isMobile = getIsMobile();
   let carouselItems: JSX.Element[] = [
     <div
       key={1}
@@ -84,7 +80,9 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
 
   return (
     <div className='App'>
-      <Carousel verticalSwipe='natural'>{carouselItems}</Carousel>
+      <div id='main-carousel'>
+        <Carousel verticalSwipe='natural'>{carouselItems}</Carousel>
+      </div>
       {mainMenuGamesRecords !== undefined ? (
         <GamesList
           gamesRecords={mainMenuGamesRecords}

@@ -7,8 +7,23 @@
     overflow: hidden;
     position: relative;
 }
-@media (max-width:  1000px) {
+@media (max-width:  450px) {
     .gamesList{
         grid-template-columns: repeat(2,1fr);
+    }
+}
+@media (min-width:450px) and (max-width:  650px) {
+    .gamesList{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+@media (min-width:650px) and (max-width:  800px) {
+    .gamesList{
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+@media (min-width:800px) and (max-width:  950px) {
+    .gamesList{
+        grid-template-columns: repeat(5,1fr);
     }
 }

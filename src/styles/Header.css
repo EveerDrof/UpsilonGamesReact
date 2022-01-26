@@ -35,8 +35,9 @@
 .jWJsas > ul{
     position: absolute;
     z-index: 3;
-}
-@media (max-width:1000px){
+} 
+
+@media (max-width:550px){
     .header-search-field{
         flex-basis: 250%;
     }

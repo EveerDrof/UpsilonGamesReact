@@ -46,7 +46,7 @@
     align-self: center;
 }
 
-@media (max-width: 1000px){
+@media (max-width: 550px){
     .header-line{
         display: grid;
         grid-template-columns: repeat(2,1fr);

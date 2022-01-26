@@ -66,8 +66,11 @@ h1,h2,h3,h4{
   max-height: 95vh;
 } */
 
-@media (max-width: 1000px){
+@media (max-width: 550px){
   .carouselElement{
     height: fit-content;
   }
+}
+.carouselElement{
+  overflow-y: hidden;
 }
