@@ -7,6 +7,7 @@ import {
 } from './constants';
 import { useState } from 'react';
 import { PostHeader } from './PostHeader';
+import { mainColor, secondaryColor } from './Colors/colors';
 export function CommentElement({
   commentRecord,
   backgroundColor,
@@ -110,6 +111,8 @@ export function CommentElement({
             ></textarea>
           </div>
           <button
+            style={{ backgroundColor: mainColor }}
+            className='comment-send-btn'
             onClick={() => {
               sendComment(reviewId, commentRecord.id, newCommentText);
               setIsAddingFormOpened(false);

@@ -16,6 +16,12 @@
     border-radius: 20px;
 }
 .new-comment-input{
-    width: 100%;
+    width: 90%;
     height: 40vh;
+}
+.comment-send-btn{
+    border-radius: 7px;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
 }
