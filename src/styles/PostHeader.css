@@ -6,7 +6,7 @@
     align-items: center;
 }
 .review-header,.header-time{
-    font-size: 3vmin;
+    font-size: 4.5vmin;
 }
 .review-header{
     color: green;
@@ -16,12 +16,17 @@
     align-items: center;
 }
 .vote-btn,.vote-set{
+    display: inline;
     height: 8vmin;
     width: 8vmin;
     font-size: 4vh;
     border-color: black;
     border-radius: 7px;
-    margin: 0px 10px ;
+    margin: 0px 10px;
+    padding: 0px;
+    text-align: center;
+    vertical-align:middle;
+    line-height:0;
 }
 .vote-set{
     border-color: chocolate;
@@ -39,4 +44,11 @@
     font-size: 3.0vmin;
     height: fit-content;
     align-self: center;
+}
+
+@media (max-width: 1000px){
+    .header-line{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
 }

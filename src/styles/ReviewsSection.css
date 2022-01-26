@@ -33,4 +33,8 @@
         grid-template-columns: repeat(1, 1fr);
         width: 97%;
     }
+    #sort-select{
+        width: 60%;
+        margin-top: 10px;
+    }
 }

@@ -31,9 +31,7 @@ export function CabinetView({ setCurrentView }: { setCurrentView: Function }) {
   }
   return (
     <div>
-      <h1 style={{ color: darkColor }}>
-        Hi {localStorage.getItem('name')} !!!!!
-      </h1>{' '}
+      <h1 style={{ color: darkColor }}>Hi {localStorage.getItem('name')}</h1>{' '}
       <div>
         <Cart
           setCurrentView={setCurrentView}

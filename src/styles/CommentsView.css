@@ -1,7 +1,8 @@
 #comments-view-wrapper,#comments-view-head,#root-comment-adding-form{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 97.5%;
+    margin-right: 2.5%;
 }
 #comments-view-head,#root-comment-adding-form{
     align-items: center;
@@ -9,12 +10,12 @@
 }
 #root-comment-btn{
     border-radius: 20px;
-    width: 300px;
+    width: fit-content;
     height: 50px;
     border-color: black;
     border-style: solid;
     color: white;
-    font-size: 30px;
+    font-size: 4vh;
     cursor: pointer;
 }
 #root-comment-adding-form textarea{
