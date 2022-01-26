@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { secondaryColor } from './Colors/colors';
 
 ReactDOM.render(
-  <div style={{ overflowX: 'hidden' }}>
+  <div style={{ overflowX: 'hidden', backgroundColor: secondaryColor }}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

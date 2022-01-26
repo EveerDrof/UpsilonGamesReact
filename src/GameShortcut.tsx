@@ -1,4 +1,4 @@
-import { mainColor, thirdColor } from './Colors/colors';
+import { grayColor, mainColor, thirdColor } from './Colors/colors';
 import { authGetHeader, deleteFromCartUrl } from './constants';
 import { GameRecordView } from './GameRecordView';
 import './styles/GameShortcut.css';
@@ -58,7 +58,10 @@ export function GameShortcut({
     <div>
       <div
         className='gameShortcut'
-        style={{ backgroundColor: thirdColor, ...additionalStyle }}
+        style={{
+          background: `linear-gradient(to top,${grayColor}  0%, ${thirdColor} 100%)`,
+          ...additionalStyle,
+        }}
         onClick={() => {
           setCurrentView(
             <GameRecordView
