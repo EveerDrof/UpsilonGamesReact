@@ -1,7 +1,7 @@
 .gameShortcut{
     height: 40vh;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 2.5vmin;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,7 @@
     text-align: center;
     z-index: 3;
     position: relative;
+    max-width: 45vmin;
 }
 .gameShortcutImage{
     max-height: 65% !important;
@@ -22,4 +23,7 @@ h4{
 }
 .additional-functionality-btn{
     width: 100%;
+}
+.gameShortcut > h4{
+    font-size: 3vh;
 }

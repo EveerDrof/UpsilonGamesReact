@@ -3,9 +3,10 @@
     flex-direction: row;
     justify-content: space-around;
     color: chocolate;
+    align-items: center;
 }
 .review-header,.header-time{
-    font-size: 3.5vmin;
+    font-size: 3vmin;
 }
 .review-header{
     color: green;
@@ -36,4 +37,6 @@
     border: black 3px solid;
     border-radius: 10px;
     font-size: 3.0vmin;
+    height: fit-content;
+    align-self: center;
 }

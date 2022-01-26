@@ -18,20 +18,16 @@ $total: 10;
 	$scale:random(2) - .4;
 	
 	.svg:nth-child(#{$i}){
-		
-		left:random(60) * 1%;
-		animation: raise#{$i} 6 + random(15) +s linear infinite;
+		animation: raise#{$i} 35 + random(20) +s linear infinite;
 		animation-delay:random(5) - 5 + s;
 		transform: scale(.3 * $i - .6) rotate(random(360) + deg);
 		z-index: 0;
 	  @keyframes raise#{$i} {
 		  from{
-			  left: 0;
-			  top: 0;
+			  left: -100vw;
 		  }
 		  to{
-			left: 100%;
-			right: 100%;
+			left: 135vw;
 			 transform: scale(.3 * $i - .6) rotate(random(360) + deg);
 			}
 		}

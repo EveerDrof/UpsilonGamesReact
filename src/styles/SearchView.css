@@ -16,6 +16,7 @@
 #select-block{
     margin-top: 20px;
     margin-bottom: 20px;
+    max-height: 20vh;
 }
 #selected-games{
     flex-basis: 70%;
@@ -24,8 +25,12 @@
     border-radius: 10px;
     border-color: black;
     border-width: 4px;
+    height: 7vh;
+    font-size: 3.5vh;
 }
-
+#selected-games h1{
+    font-size: 4vh;
+}
 @media (max-width: 1000px){
     .search-block{
         flex-direction: column;

@@ -44,11 +44,31 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
       tags: selectedTags.map((t) => t.value),
     });
   }
-
+  const selectStyles = {
+    control: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+    menu: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+  };
   return (
     <div id='search-view-wrapper' style={{ backgroundColor: mainColor }}>
       <div className='search-block'>
         <div className='search-parameters'>
+          <div id='select-block'>
+            <Select
+              styles={selectStyles}
+              options={tags}
+              isMulti
+              onChange={(options) => {
+                console.log('Selcted options', options);
+                setSelectedTags(options);
+              }}
+            />
+          </div>
           <AddingLine
             fieldName='Min mark'
             valueType='number'
@@ -78,16 +98,6 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
             isVertical={false}
             setResult={setNamePart}
           />
-          <div id='select-block'>
-            <Select
-              options={tags}
-              isMulti
-              onChange={(options) => {
-                console.log('Selcted options', options);
-                setSelectedTags(options);
-              }}
-            />
-          </div>
           <button id='selection-search-btn' onClick={search}>
             Search
           </button>

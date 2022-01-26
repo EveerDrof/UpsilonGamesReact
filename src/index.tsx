@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <div style={{ overflowX: 'hidden' }}>
+  <div style={{ overflowX: 'hidden' }}>
+    <React.StrictMode>
       <App />
-    </div>
-  </React.StrictMode>,
+    </React.StrictMode>
+  </div>,
   document.getElementById('root')
 );
 

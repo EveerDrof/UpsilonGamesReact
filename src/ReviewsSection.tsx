@@ -75,6 +75,16 @@ export function ReviewsSection({
     { value: 'mostLiked', label: 'mostLiked' },
     { value: 'highestDifference', label: 'highestDifference' },
   ];
+  const selectStyles = {
+    control: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+    menu: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+  };
   return (
     <div id='reviews-section'>
       {isGameInLibrary ? (
@@ -90,6 +100,7 @@ export function ReviewsSection({
           setSortType(val!.label);
           loadReviews(val!.label);
         }}
+        styles={selectStyles}
       />
       <div id='reviews-layout'>{reviewsBlocks}</div>
     </div>

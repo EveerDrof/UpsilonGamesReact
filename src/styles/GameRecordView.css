@@ -1,15 +1,15 @@
 
 #screenshots-carousel{
-    width: auto;
-    height: 75vh;
+    width: 100%;
+    height: auto;
 }
 #screenshots-carousel  * > img{
-    width: auto;
+    width: 100%;
     height: auto;
 }
 .screenshot{
     height: 100%;
-    max-height: 80%;
+    max-height: 100%;
     max-width: 100%;
 }
 
@@ -18,8 +18,9 @@
     object-fit: cover;
 }
 #screenshots-carousel .thumb{
-    height: 10vh;
-    width: auto;
+    height: auto;
+    width: 20vw !important;
+    max-height: 20vh;
 }
 #screenshots-carousel .carousel-root,#screenshots-carousel .carousel.carousel-slider{
     height: 100%;
@@ -33,6 +34,9 @@
 #top-info{
     display: flex;
     flex-direction: column;
+}
+#top-info h1,#top-info h2{
+    font-size: 5vh;
 }
 #right-info-column{
     display: flex;
@@ -62,11 +66,12 @@
     background-color: tan;
     border-radius: 20px;
     padding: 10px;
+    font-size: 4vh;
 }
 #mark-circle-bar{
     margin-top: 10px;
-    height: 100px;
-    width: 100px;
+    height: 20vmin;
+    width: 20vmin;
 }
 #mark-setter-column{
     display: flex;
@@ -96,6 +101,7 @@
     min-height: 20px;
     border-radius: 20px;
     text-align: center;
+    font-size: 2.5vh;
 }
 
 #your-mark-text{
@@ -107,6 +113,7 @@
 #mark-setter-button{
     cursor: pointer;
 }
+
 
 @media (max-width: 1000px){
     .screenshot{
@@ -129,9 +136,6 @@
     #screenshots-carousel *  > .animated{
         max-height: 100%;
         max-width: 100%;
-    }
-    #screenshots-carousel *  > .selected{
-        max-height: 70vh;
     }
     #screenshots-carousel{
         width: auto;

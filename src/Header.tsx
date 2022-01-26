@@ -54,6 +54,16 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
     removeUserStorageData();
     setCurrentView(<LoginRegister setCurrentView={setCurrentView} />);
   }
+  const selectStyles = {
+    control: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+    menu: (base: any) => ({
+      ...base,
+      fontSize: '2.5vh',
+    }),
+  };
   return (
     <div id='header' style={{ backgroundColor: secondaryColor }}>
       <button className='header-btn' style={{ color: darkColor }}>
@@ -70,6 +80,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
       </button>
       <div className='header-search-field'>
         <Select
+          styles={selectStyles}
           placeholder={'Search'}
           options={searchGamesNames}
           onInputChange={(newValue: string, actionMeta: InputActionMeta) => {

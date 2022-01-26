@@ -1,9 +1,4 @@
-import {
-  darkColor,
-  mainColor,
-  secondaryColor,
-  thirdColor,
-} from './Colors/colors';
+import { mainColor, thirdColor } from './Colors/colors';
 import { authGetHeader, deleteFromCartUrl } from './constants';
 import { GameRecordView } from './GameRecordView';
 import './styles/GameShortcut.css';

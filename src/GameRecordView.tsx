@@ -274,16 +274,16 @@ export function GameRecordView({
             <></>
           )}
         </div>
-      </div>
-      <h2 style={{ textAlign: 'center' }}>Tags : </h2>
-      <div id='tag-wrapper'>{tagsList}</div>
-      {longGameData ? (
-        <p id='description' style={{ backgroundColor: mainColor }}>
-          Description : <br /> {longGameData.description}
-        </p>
-      ) : (
-        <></>
-      )}
+        <h2 style={{ textAlign: 'center' }}>Tags : </h2>
+        <div id='tag-wrapper'>{tagsList}</div>
+        {longGameData ? (
+          <p id='description' style={{ backgroundColor: mainColor }}>
+            Description : <br /> {longGameData.description}
+          </p>
+        ) : (
+          <></>
+        )}
+      </div>{' '}
       {longGameData ? (
         <ReviewsSection
           game={longGameData}
