@@ -6,7 +6,7 @@
 
 //#00fff2
 
-const mainColor = '#c9f995';
+const mainColor = '#dcfdb8';
 const secondaryColor = '#56a600';
 const thirdColor = '#96cb5d';
 const grayColor = '#58c3a1';

@@ -80,7 +80,8 @@ export function GameShortcut({
           alt='game screenshot or logo'
         ></img>
         <h4 className='gameShortcutPrice' style={{ color: mainColor }}>
-          Price : {discountFound ? gameRecord.discountPrice : ''}{' '}
+          {discountFound ? gameRecord.discountPrice : ''}
+          {'  '}
           <span
             style={
               discountFound
@@ -93,6 +94,7 @@ export function GameShortcut({
           >
             {gameRecord.price}
           </span>
+          {' ₽'}
         </h4>
         <h4 className='gameShortcutMark' style={{ color: mainColor }}>
           Mark : {gameRecord.averageMark}

@@ -192,7 +192,7 @@ export function GameRecordView({
   }
   let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
-    <div style={{ backgroundColor: thirdColor }}>
+    <div style={{ backgroundColor: mainColor }}>
       <div id='top-info'>
         <div id='screenshots-carousel'>
           <Carousel verticalSwipe='natural' dynamicHeight={false}>
@@ -200,8 +200,8 @@ export function GameRecordView({
           </Carousel>
         </div>
         <div id='right-info-column'>
-          <h1>{gameRecord.name}</h1>
-          <h1>
+          <h1 style={{ color: darkColor }}>{gameRecord.name}</h1>
+          <h1 style={{ color: darkColor }}>
             Price : {gameRecord.discountPrice}{' '}
             {discountFound ? (
               <span
@@ -225,9 +225,9 @@ export function GameRecordView({
                   maxValue={100}
                   text={`${longGameData!.averageMark}`}
                   styles={buildStyles({
-                    textColor: mainColor,
+                    textColor: secondaryColor,
                     textSize: '35px',
-                    pathColor: mainColor,
+                    pathColor: secondaryColor,
                   })}
                 />
               </div>
@@ -239,7 +239,7 @@ export function GameRecordView({
             <div>
               {gameStatusInLibrary === 'inLibrary' ? (
                 <>
-                  <h1 id='your-mark-text'>
+                  <h1 id='your-mark-text' style={{ color: darkColor }}>
                     Your mark{' '}
                     {fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}
                   </h1>
@@ -274,7 +274,7 @@ export function GameRecordView({
             <></>
           )}
         </div>
-        <h2 style={{ textAlign: 'center' }}>Tags : </h2>
+        <h2 style={{ textAlign: 'center', color: darkColor }}>Tags : </h2>
         <div id='tag-wrapper'>{tagsList}</div>
         {longGameData ? (
           <p id='description' style={{ backgroundColor: mainColor }}>

@@ -147,3 +147,7 @@ export function fetchAndSetSelectedGames(
       }
     });
 }
+
+export function getIsMobile() {
+  return window.innerWidth < 1000;
+}

@@ -8,6 +8,7 @@ import {
   GameRecord,
   loadGamewRecords as loadGameRecords,
 } from './utils';
+import { darkColor } from './Colors/colors';
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -51,7 +52,12 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
       style={{ backgroundImage: isMobile ? '' : 'url(/pictures/hl.jpg)' }}
       className='carouselElement'
     >
-      <h1 className='carousel-header'>Discounts</h1>
+      <h1
+        className='carousel-header'
+        style={{ color: isMobile ? darkColor : 'white' }}
+      >
+        Discounts
+      </h1>
       <GamesList
         setCurrentView={setCurrentView}
         gamesRecords={discountedGames}
@@ -62,7 +68,12 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
       style={{ backgroundImage: isMobile ? '' : 'url(/pictures/ds.jpg)' }}
       className='carouselElement'
     >
-      <h1 className='carousel-header'>Top rated games</h1>
+      <h1
+        className='carousel-header'
+        style={{ color: isMobile ? darkColor : 'white' }}
+      >
+        Top rated games
+      </h1>
       <GamesList setCurrentView={setCurrentView} gamesRecords={topRatedGames} />
     </div>,
   ];
