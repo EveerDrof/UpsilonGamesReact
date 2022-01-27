@@ -16,6 +16,7 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { ReviewsSection } from './ReviewsSection';
 import { LoadingScreen } from './LoadingScreen';
+import './styles/scss/bganimation.css';
 import {
   darkColor,
   mainColor,
@@ -85,7 +86,6 @@ export function GameRecordView({
       .then(() => true);
   }
   function checkIfGameInLibrary() {
-    console.log('Check if game in library');
     return fetch(`${gameInLibraryUrl}${gameRecord.name}`, {
       headers: authGetHeader(),
     })
@@ -193,6 +193,19 @@ export function GameRecordView({
   let discountFound = gameRecord.discountPrice != gameRecord.price;
   return (
     <div style={{ backgroundColor: mainColor }}>
+      {/* <svg
+        className='upsilon-particle'
+        width='24'
+        height='31'
+        viewBox='0 0 24 31'
+        fill='white'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <path
+          d='M15.994 0L4.12148 15L5.15935 20L9.12148 22.5L15.1215 20.5L23.1215 4L20.6215 23L7.03335e-06 30.5L0.62149 10L15.994 0Z'
+          fill='white'
+        />
+      </svg> */}
       <div id='top-info'>
         <div id='screenshots-carousel'>
           <Carousel verticalSwipe='natural' dynamicHeight={false}>

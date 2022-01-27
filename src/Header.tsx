@@ -67,7 +67,18 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
   return (
     <div id='header' style={{ backgroundColor: secondaryColor }}>
       <button className='header-btn' style={{ color: darkColor }}>
-        Logo
+        <svg
+          width='24'
+          height='31'
+          viewBox='0 0 24 31'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M15.994 0L4.12148 15L5.15935 20L9.12148 22.5L15.1215 20.5L23.1215 4L20.6215 23L7.03335e-06 30.5L0.62149 10L15.994 0Z'
+            fill='white'
+          />
+        </svg>
       </button>
       <button
         style={{ color: darkColor }}

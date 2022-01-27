@@ -46,7 +46,6 @@ export function LoginRegisterForm({
       document.getElementById('passwordInput') as HTMLInputElement
     ).value;
     let payload = JSON.stringify({ name, password });
-    console.log(payload);
     if (formType === 'register') {
       let repeatedPassword = (
         document.getElementById('repeatPasswordInput') as HTMLInputElement
@@ -62,6 +61,8 @@ export function LoginRegisterForm({
       }).then((response) => {
         if (response.status == 201) {
           fetchUserDataAndSetLocalStorage(name, password);
+        } else {
+          response.text().then((text) => alert(text));
         }
       });
     } else {
