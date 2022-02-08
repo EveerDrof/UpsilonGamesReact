@@ -1,4 +1,9 @@
-import { authGetHeader, votesReviewUrl, votesUrl } from './constants';
+import {
+  authGetHeader,
+  getTextData,
+  votesReviewUrl,
+  votesUrl,
+} from './constants';
 import './styles/PostHeader.css';
 import dateFormat from 'dateformat';
 import { CommentsView } from './CommentsView';
@@ -29,7 +34,7 @@ export function PostHeader({
     isDisliked,
   } = { ...post };
   let formatedDate = dateFormat(new Date(creationDate), 'yyyy/m/d HH:MM:ss');
-  console.log(`Post `, post);
+  const textData = getTextData().comment;
   return (
     <div className='header-line'>
       <h2 className='review-header'>{user.name}</h2>
@@ -66,7 +71,7 @@ export function PostHeader({
             );
           }}
         >
-          Comments
+          {textData.comment}
         </button>
       ) : (
         <button
@@ -78,7 +83,7 @@ export function PostHeader({
             }
           }}
         >
-          {isAddingFormOpened ? 'Close adding form' : 'Add a comment'}
+          {isAddingFormOpened ? textData.closeAddingForm : textData.addComment}
         </button>
       )}
     </div>

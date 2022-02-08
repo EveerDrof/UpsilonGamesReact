@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Cabinet } from './Cabinet';
-import { gamesUrl, searchGameUrl } from './constants';
+import { gamesUrl, getTextData, searchGameUrl } from './constants';
 import { LoginRegister } from './LoginRegister';
 import { MainView } from './MainView';
 import './styles/Header.css';
@@ -11,13 +11,17 @@ import { LoadingScreen } from './LoadingScreen';
 import { SearchView } from './SearchView';
 import { darkColor, secondaryColor } from './Colors/colors';
 
-const advancedSearchName = 'Advanced Search';
-
 export function Header({ setCurrentView }: { setCurrentView: Function }) {
+  const languages = ['ENG', 'РУС'];
+  let currentLanguage = localStorage.getItem('language');
+  if (!currentLanguage) {
+    currentLanguage = 'ENG';
+  }
   let [searchGamesNames, setSearchGamesNames]: [
     { key: string; value: string; label: string }[],
     Function
   ] = useState([]);
+  const advancedSearchName = getTextData().header.advancedSearch;
   function getSearchData(namePart: string) {
     let url =
       `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=-2&namePart=${namePart}` +
@@ -42,8 +46,6 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
             });
           }
         }
-        console.log('Data for search', searchGamesNames);
-
         setSearchGamesNames([...searchGamesNames]);
       });
   }
@@ -64,6 +66,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
       fontSize: '2.5vh',
     }),
   };
+  const textData = getTextData();
   return (
     <div id='header' style={{ backgroundColor: secondaryColor }}>
       <button className='header-btn' style={{ color: darkColor }}>
@@ -87,12 +90,12 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           setCurrentView(<MainView setCurrentView={setCurrentView} />);
         }}
       >
-        Main
+        {textData.header.main}
       </button>
       <div className='header-search-field'>
         <Select
           styles={selectStyles}
-          placeholder={'Search'}
+          placeholder={textData.header.search}
           options={searchGamesNames}
           onInputChange={(newValue: string, actionMeta: InputActionMeta) => {
             if (newValue) {
@@ -133,7 +136,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           setCurrentView(<Cabinet />);
         }}
       >
-        Cabinet
+        {textData.header.cabinet}
       </button>
       {localStorage.getItem('password') ? (
         <button
@@ -146,6 +149,24 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
       ) : (
         <></>
       )}
+      <button
+        style={{ color: darkColor }}
+        className='header-btn'
+        onClick={() => {
+          if (currentLanguage) {
+            const currentLanguageIndex = languages.indexOf(currentLanguage);
+            let nextLanguageIndex = currentLanguageIndex + 1;
+            if (nextLanguageIndex == languages.length) {
+              nextLanguageIndex = 0;
+            }
+            const newLanguage = languages[nextLanguageIndex];
+            localStorage.setItem('language', newLanguage);
+            window.location.reload();
+          }
+        }}
+      >
+        {currentLanguage}
+      </button>
     </div>
   );
 }

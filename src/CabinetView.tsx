@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { AdminView } from './AdminElements/AdminView';
 import { Cart } from './Cart';
 import { darkColor } from './Colors/colors';
-import { authGetHeader, buyCartUrl, cartUrl, libraryUrl } from './constants';
+import {
+  authGetHeader,
+  buyCartUrl,
+  cartUrl,
+  getTextData,
+  libraryUrl,
+} from './constants';
 import { Library } from './Library';
 import { loadGamewRecords } from './utils';
 
@@ -29,9 +35,12 @@ export function CabinetView({ setCurrentView }: { setCurrentView: Function }) {
   if (localStorage.getItem('name') == 'admin') {
     return <AdminView />;
   }
+  const textData = getTextData().cabinet;
   return (
     <div>
-      <h1 style={{ color: darkColor }}>Hi {localStorage.getItem('name')}</h1>{' '}
+      <h1 style={{ color: darkColor }}>
+        {textData.greeting} {localStorage.getItem('name')}
+      </h1>{' '}
       <div>
         <Cart
           setCurrentView={setCurrentView}

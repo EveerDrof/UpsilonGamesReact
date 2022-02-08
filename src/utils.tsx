@@ -8,10 +8,29 @@ export interface GameRecord {
   imageBlob: string;
   discountPrice: number;
 }
+export interface SteamReview {
+  review: string;
+}
+export interface ForeignReviewsDataSteam {
+  id: number;
+  reviewsSiteObject: {
+    cursor: string;
+    reviews: SteamReview[];
+    query_summary: {
+      num_reviews: number;
+      review_score: number;
+      review_score_desc: string;
+      total_positive: number;
+      total_negative: number;
+      total_reviews: number;
+    };
+  };
+}
 export interface FullGameRecord extends GameRecord {
   tags: Tag[];
   id: number;
   description: string;
+  foreignReviewsDataSteam: ForeignReviewsDataSteam;
 }
 export interface Tag {
   id: number;
@@ -151,3 +170,40 @@ export function fetchAndSetSelectedGames(
 export function getIsMobile() {
   return window.innerWidth < 1000;
 }
+
+// export interface TextData {
+//   header: {
+//     main: string;
+//     cabinet: string;
+//     search: string;
+//     advancedSearch: string;
+//   };
+//   main: {
+//     topRatedGames: string;
+//     sales: string;
+//   };
+//   gameShortcut: {
+//     mark: string;
+//     delete: string;
+//   };
+//   gameRecordView: {
+//     price: string;
+//     mark: string;
+//     description: string;
+//     tags: string;
+//     buy: string;
+//     uploadMark: string;
+//     yourMark: string;
+//     rateThisGame: string;
+//     inLibrary: string;
+//     inCart: string;
+//   };
+//   steamReviewData: {
+//     steamReviewsHead: string;
+//     steamReviews: string;
+//     reviewSummary: string;
+//     totalReviewsNumber: string;
+//     positiveReviewsNumber: string;
+//     negativeReviewsNumber: string;
+//   };
+// }

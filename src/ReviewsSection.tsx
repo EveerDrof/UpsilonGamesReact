@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
   authGetHeader,
+  getTextData,
   reviewsAuthorizedUrl,
   reviewsUnauthorizedUrl,
+  searchGameUrl,
   votesUrl,
 } from './constants';
 import { ReviewAddingForm } from './ReviewAddingForm';
@@ -47,9 +49,7 @@ export function ReviewsSection({
   }, []);
   let reviewsBlocks: JSX.Element[] = [];
   if (reviews && reviews.length !== 0) {
-    console.log('Reviews ', reviews);
     reviews.forEach((val) => {
-      console.log('Review', val);
       function sendVote(voteType: boolean) {
         let url = `${votesUrl}review?reviewId=${val.id}&vote=${voteType}`;
         fetch(url, { method: 'POST', headers: authGetHeader() }).then(() => {
@@ -69,11 +69,12 @@ export function ReviewsSection({
       );
     });
   }
+  const textData = getTextData().reviews.search;
   let sortOptions = [
-    { value: 'newest', label: 'newest' },
-    { value: 'oldest', label: 'oldest' },
-    { value: 'mostLiked', label: 'mostLiked' },
-    { value: 'highestDifference', label: 'highestDifference' },
+    { value: 'newest', label: textData.newest },
+    { value: 'oldest', label: textData.oldest },
+    { value: 'mostLiked', label: textData.mostLiked },
+    { value: 'highestDifference', label: textData.highestDifference },
   ];
   const selectStyles = {
     control: (base: any) => ({
@@ -97,8 +98,8 @@ export function ReviewsSection({
         options={sortOptions}
         defaultValue={sortOptions[0]}
         onChange={(val) => {
-          setSortType(val!.label);
-          loadReviews(val!.label);
+          setSortType(val!.value);
+          loadReviews(val!.value);
         }}
         styles={selectStyles}
       />

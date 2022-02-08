@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GamesList } from './GamesList';
 import { Jumper } from './Jumper';
-import { mainMenuGamesTopUrl, picturesUrl } from './constants';
+import { getTextData, mainMenuGamesTopUrl, picturesUrl } from './constants';
 import { Carousel } from 'react-responsive-carousel';
 import {
   fetchAndSetSelectedGames,
@@ -12,6 +12,7 @@ import {
 import { darkColor } from './Colors/colors';
 
 export function MainView({ setCurrentView }: { setCurrentView: Function }) {
+  const textData = getTextData();
   const [showJumper, setShowJumper] = useState(false);
   const [mainMenuGamesRecords, setMainMenuGamesRecords]: any = useState();
   const [discountedGames, setDiscountedGames]: [GameRecord[], Function] =
@@ -52,7 +53,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
         className='carousel-header'
         style={{ color: isMobile ? darkColor : 'white' }}
       >
-        Discounts
+        {textData.main.sales}
       </h1>
       <GamesList
         setCurrentView={setCurrentView}
@@ -68,7 +69,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
         className='carousel-header'
         style={{ color: isMobile ? darkColor : 'white' }}
       >
-        Top rated games
+        {textData.main.topRatedGames}
       </h1>
       <GamesList setCurrentView={setCurrentView} gamesRecords={topRatedGames} />
     </div>,

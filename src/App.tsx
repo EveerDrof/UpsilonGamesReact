@@ -8,6 +8,7 @@ import { mainColor, secondaryColor, thirdColor } from './Colors/colors';
 function App() {
   const [currentView, setCurrentView]: [Element | null, Function] =
     useState(null);
+
   useEffect(() => {
     setCurrentView(<MainView setCurrentView={setCurrentView} />);
   }, []);

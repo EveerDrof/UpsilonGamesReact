@@ -36,6 +36,130 @@ function authGetHeader() {
       ),
   };
 }
+function getTextData() {
+  switch (localStorage.getItem('language')) {
+    case 'РУС':
+      return {
+        header: {
+          main: 'Главная',
+          cabinet: 'Кабинет',
+          search: 'Поиск',
+          advancedSearch: 'Продвинутый поиск',
+        },
+        main: {
+          topRatedGames: 'Лучшие игры',
+          sales: 'Скидки',
+        },
+        gameShortcut: {
+          mark: 'Оценка',
+          delete: 'Удалить',
+        },
+        gameRecordView: {
+          price: 'Цена',
+          mark: 'Оценка',
+          description: 'Описание',
+          tags: 'Теги',
+          buy: 'Купить',
+          uploadMark: 'Отправить оценку',
+          yourMark: 'Ваша оценка',
+          rateThisGame: 'Оцените эту игру',
+          inLibrary: 'В библиотеке',
+          inCart: 'В корзине',
+        },
+        steamReviewData: {
+          steamReviewsHead: 'Данные Steam',
+          steamReviews: 'Отзывы Steam',
+          reviewSummary: 'Сводка по отзывам',
+          totalReviewsNumber: 'Всего отзывов',
+          positiveReviewsNumber: 'Число позитивных отзывов',
+          negativeReviewsNumber: 'Число отрицательных отзывов',
+        },
+        cabinet: {
+          greeting: 'Привет',
+          buyItems: 'Купить игры в корзине',
+          cart: 'Корзина',
+          cartIsEmpty: 'Корзина пуста',
+          library: 'Библиотека',
+          libraryIsEmpty: 'Библиотека пуста',
+        },
+        reviews: {
+          search: {
+            newest: 'Новейшее',
+            oldest: 'Старейшее',
+            mostLiked: 'Больше всех лайков',
+            highestDifference: 'Самые положительные',
+          },
+        },
+        comment: {
+          comment: 'Коммент',
+          submitComment: 'Добавить комментарий',
+          closeAddingForm: 'Закрыть форму',
+          addComment: 'Добавить комментарий',
+        },
+      };
+    default:
+    case 'ENG':
+      return {
+        header: {
+          main: 'Main',
+          cabinet: 'Cabinet',
+          search: 'Search',
+          advancedSearch: 'Advanced search',
+        },
+        main: {
+          topRatedGames: 'Top rated games',
+          sales: 'Discounts',
+        },
+        gameShortcut: {
+          mark: 'Mark',
+          delete: 'Delete',
+        },
+        gameRecordView: {
+          price: 'Price',
+          mark: 'Mark',
+          description: 'Description',
+          tags: 'Tags',
+
+          buy: 'Buy',
+          uploadMark: 'Upload mark',
+          yourMark: 'Your mark',
+          rateThisGame: 'Rate this game',
+          inLibrary: 'In library',
+          inCart: 'In cart',
+        },
+        steamReviewData: {
+          steamReviewsHead: 'Steam data',
+          steamReviews: 'Steam reviews',
+          reviewSummary: 'Reviesw summary',
+          totalReviewsNumber: 'Total reviews number',
+          positiveReviewsNumber: 'Positive reviews number',
+          negativeReviewsNumber: 'Negative reviews number',
+        },
+        cabinet: {
+          greeting: 'Hi',
+          buyItems: 'Buy items in cart',
+          cart: 'Cart',
+          cartIsEmpty: 'Cart is empty',
+          library: 'Library',
+          libraryIsEmpty: 'Library is empty',
+        },
+        reviews: {
+          search: {
+            newest: 'Newest',
+            oldest: 'Oldest',
+            mostLiked: 'most liked',
+            highestDifference: 'most positive',
+          },
+        },
+        comment: {
+          comment: 'Comment',
+          submitComment: 'Submit a comment',
+          closeAddingForm: 'Close addingForm',
+          addComment: 'Add a comment',
+        },
+      };
+  }
+}
 export function getPostAuthHeaders() {
   return {
     ...authGetHeader(),
@@ -72,4 +196,5 @@ export {
   commentsVotesUrl,
   reviewsAuthorizedUrl,
   reviewsUnauthorizedUrl,
+  getTextData,
 };

@@ -12,6 +12,9 @@
 body{
   background-color: #dcfdb8;
 }
+body * {
+  overflow: hidden;
+}
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -38,10 +41,14 @@ body{
   width: 100%;
 }
 .carouselElement{
-  height: 92vh;
+  min-height: 92vh;
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: center;
+  overflow-y: hidden;
+}
+.carousel-element *{
+  overflow-y: hidden;
 }
 
 h1,h2,h3,h4{
@@ -69,8 +76,6 @@ h1,h2,h3,h4{
 @media (max-width: 550px){
   .carouselElement{
     height: fit-content;
+    overflow-y: hidden;
   }
-}
-.carouselElement{
-  overflow-y: hidden;
 }

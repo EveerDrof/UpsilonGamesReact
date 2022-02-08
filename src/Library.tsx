@@ -1,4 +1,5 @@
 import { darkColor } from './Colors/colors';
+import { getTextData } from './constants';
 import { GamesList } from './GamesList';
 
 export function Library({
@@ -12,11 +13,12 @@ export function Library({
   type?: string;
   updateRootElement?: Function;
 }) {
+  const textData = getTextData().cabinet;
   return (
     <>
       {libraryGameRecords && libraryGameRecords?.length !== 0 ? (
         <>
-          <h1 style={{ color: darkColor }}>Library </h1>
+          <h1 style={{ color: darkColor }}>{textData.library} </h1>
           <GamesList
             gamesRecords={libraryGameRecords}
             setCurrentView={setCurrentView}
@@ -25,7 +27,7 @@ export function Library({
           />
         </>
       ) : (
-        <h1 style={{ color: darkColor }}>Library is empty</h1>
+        <h1 style={{ color: darkColor }}>{textData.libraryIsEmpty}</h1>
       )}
     </>
   );

@@ -4,6 +4,7 @@ import {
   authGetHeader,
   commentsReviewsUrl,
   commentsVotesUrl,
+  getTextData,
 } from './constants';
 import { useState } from 'react';
 import { PostHeader } from './PostHeader';
@@ -84,6 +85,7 @@ export function CommentElement({
       />
     );
   }
+  const textData = getTextData().comment;
   return (
     <div
       className='comment-element-wrapper'
@@ -119,7 +121,7 @@ export function CommentElement({
               loadComments();
             }}
           >
-            Submit a comment
+            {textData.submitComment}
           </button>
         </div>
       ) : (

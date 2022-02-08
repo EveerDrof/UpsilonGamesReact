@@ -1,5 +1,5 @@
 import { grayColor, mainColor, thirdColor } from './Colors/colors';
-import { authGetHeader, deleteFromCartUrl } from './constants';
+import { authGetHeader, deleteFromCartUrl, getTextData } from './constants';
 import { GameRecordView } from './GameRecordView';
 import './styles/GameShortcut.css';
 import { GameRecord } from './utils';
@@ -30,6 +30,7 @@ export function GameShortcut({
       }
     });
   }
+  const textData = getTextData();
   let additionalFunctional = <></>;
   switch (type) {
     case 'cart':
@@ -40,7 +41,7 @@ export function GameShortcut({
             requestDeleteFromCartAndUpdate();
           }}
         >
-          Delete
+          {textData.gameShortcut.delete}
         </button>
       );
       break;
@@ -97,7 +98,7 @@ export function GameShortcut({
           {' ₽'}
         </h4>
         <h4 className='gameShortcutMark' style={{ color: mainColor }}>
-          Mark : {gameRecord.averageMark}
+          {textData.gameShortcut.mark} : {gameRecord.averageMark}
         </h4>
       </div>
       {additionalFunctional}

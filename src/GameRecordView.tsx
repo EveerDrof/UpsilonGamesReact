@@ -5,6 +5,7 @@ import {
   authGetHeader,
   gameInLibraryUrl,
   gamesUrl,
+  getTextData,
   markUrl,
   picturesUrl,
 } from './constants';
@@ -23,6 +24,7 @@ import {
   secondaryColor,
   thirdColor,
 } from './Colors/colors';
+import { SteamReviewsBlock } from './SteamReviewsBlock';
 
 export function GameRecordView({
   gameRecord,
@@ -31,6 +33,7 @@ export function GameRecordView({
   gameRecord: GameRecord;
   setCurrentView: Function;
 }) {
+  const textData = getTextData();
   const [isLoaded, setIsLoaded]: [Boolean, Function] = useState(false);
   const [screeshotsBlobs, setScreeshotsBlobs]: [string[], Function] = useState(
     []
@@ -153,12 +156,14 @@ export function GameRecordView({
     case 'inLibrary':
       buyingBtn = (
         <button id='in-library-btn' style={{ backgroundColor: secondaryColor }}>
-          In library
+          {textData.gameRecordView.inLibrary}
         </button>
       );
       break;
     case 'inCart':
-      buyingBtn = <button id='in-cart-btn'>In cart</button>;
+      buyingBtn = (
+        <button id='in-cart-btn'>{textData.gameRecordView.inCart}</button>
+      );
       break;
     default:
       buyingBtn = (
@@ -169,12 +174,11 @@ export function GameRecordView({
             setGameStatusInLibrary('inCart');
           }}
         >
-          Buy
+          {textData.gameRecordView.buy}
         </button>
       );
       break;
   }
-  console.log('Status', gameStatusInLibrary);
   let tagsList: JSX.Element[] = [];
   longGameData?.tags.forEach((tag) => {
     tagsList.push(
@@ -186,7 +190,6 @@ export function GameRecordView({
       </h4>
     );
   });
-  console.log('Bool is ', isLoaded);
   if (!isLoaded) {
     return <LoadingScreen />;
   }
@@ -215,7 +218,7 @@ export function GameRecordView({
         <div id='right-info-column'>
           <h1 style={{ color: darkColor }}>{gameRecord.name}</h1>
           <h1 style={{ color: darkColor }}>
-            Price : {gameRecord.discountPrice}{' '}
+            {textData.gameRecordView.price} : {gameRecord.discountPrice}{' '}
             {discountFound ? (
               <span
                 style={{
@@ -253,8 +256,11 @@ export function GameRecordView({
               {gameStatusInLibrary === 'inLibrary' ? (
                 <>
                   <h1 id='your-mark-text' style={{ color: darkColor }}>
-                    Your mark{' '}
-                    {fetchedUserMark >= 0 ? fetchedUserMark : 'Rate this sgame'}
+                    {textData.gameRecordView.yourMark}
+                    {' : '}
+                    {fetchedUserMark >= 0
+                      ? fetchedUserMark
+                      : textData.gameRecordView.rateThisGame}
                   </h1>
                   <div id='mark-setter-column'>
                     <div id='mark-setter-line'>
@@ -275,7 +281,7 @@ export function GameRecordView({
                         sendMarkToServer(userMark);
                       }}
                     >
-                      Upload mark
+                      {textData.gameRecordView.uploadMark}
                     </button>
                   </div>
                 </>
@@ -287,11 +293,14 @@ export function GameRecordView({
             <></>
           )}
         </div>
-        <h2 style={{ textAlign: 'center', color: darkColor }}>Tags : </h2>
+        <h2 style={{ textAlign: 'center', color: darkColor }}>
+          {textData.gameRecordView.tags} :{' '}
+        </h2>
         <div id='tag-wrapper'>{tagsList}</div>
         {longGameData ? (
           <p id='description' style={{ backgroundColor: mainColor }}>
-            Description : <br /> {longGameData.description}
+            {textData.gameRecordView.description} : <br />{' '}
+            {longGameData.description}
           </p>
         ) : (
           <></>
@@ -302,6 +311,13 @@ export function GameRecordView({
           game={longGameData}
           isGameInLibrary={gameStatusInLibrary === 'inLibrary'}
           setCurrentView={setCurrentView}
+        />
+      ) : (
+        <></>
+      )}
+      {longGameData ? (
+        <SteamReviewsBlock
+          steamReviewsData={longGameData.foreignReviewsDataSteam}
         />
       ) : (
         <></>

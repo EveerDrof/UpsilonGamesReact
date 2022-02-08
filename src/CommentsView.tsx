@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CommentElement } from './CommentElement';
-import { authGetHeader, commentsReviewsUrl } from './constants';
+import { authGetHeader, commentsReviewsUrl, getTextData } from './constants';
 import { Review, Comment } from './utils';
 import Select from 'react-select';
 import './styles/CommentsView.css';
@@ -77,11 +77,14 @@ export function CommentsView({
     loadComments('newest');
   }, []);
   let commentsBlocks = getCommentBlocks(comments);
+  const textData = getTextData();
+  const searchTextData = textData.reviews.search;
+  const commentsTextData = textData.comment;
   const sortTypeOptions = [
-    { value: 'newest', label: 'newest' },
-    { value: 'oldest', label: 'oldest' },
-    { value: 'mostLiked', label: 'mostLiked' },
-    { value: 'highestDifference', label: 'highestDifference' },
+    { value: 'newest', label: searchTextData.newest },
+    { value: 'oldest', label: searchTextData.oldest },
+    { value: 'mostLiked', label: searchTextData.mostLiked },
+    { value: 'highestDifference', label: searchTextData.highestDifference },
   ];
   return (
     <div id='comments-view-wrapper'>
@@ -93,7 +96,9 @@ export function CommentsView({
             setIsRootCommentAddingFormOpened(!isRootCommentAddingFormOpened);
           }}
         >
-          {isRootCommentAddingFormOpened ? 'Close adding form' : 'Add comment'}
+          {isRootCommentAddingFormOpened
+            ? commentsTextData.closeAddingForm
+            : commentsTextData.addComment}
         </button>
         {isRootCommentAddingFormOpened ? (
           <div id='root-comment-adding-form'>
@@ -109,7 +114,7 @@ export function CommentsView({
                 sendComment(review.id, -1, rootCommentText);
               }}
             >
-              Send comment
+              {commentsTextData.submitComment}
             </button>
           </div>
         ) : (
@@ -119,8 +124,8 @@ export function CommentsView({
           options={sortTypeOptions}
           defaultValue={sortTypeOptions[0]}
           onChange={(val) => {
-            setSortType(val!.label);
-            loadComments(val!.label);
+            setSortType(val!.value);
+            loadComments(val!.value);
           }}
         />
       </div>
