@@ -88,7 +88,6 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
         <GamesList
           gamesRecords={mainMenuGamesRecords}
           setCurrentView={setCurrentView}
-          isShowingAnimations={true}
         />
       ) : (
         <></>
