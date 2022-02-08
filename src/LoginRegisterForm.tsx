@@ -3,6 +3,7 @@ import { CabinetView } from './CabinetView';
 import { mainColor, thirdColor } from './Colors/colors';
 import {
   authGetHeader,
+  getTextData,
   usersGetLoggedUserDataUrl,
   usersRegisterUrl,
 } from './constants';
@@ -69,6 +70,7 @@ export function LoginRegisterForm({
       fetchUserDataAndSetLocalStorage(name, password);
     }
   }
+  const textData = getTextData().auth;
   const [formType, setFormType]: [string, Function] = useState('login');
   return (
     <div id='login-register-form'>
@@ -79,7 +81,7 @@ export function LoginRegisterForm({
           className={formType === 'register' ? 'active-form-btn' : 'switch-btn'}
           onClick={onBtnFormSwtiecherClick}
         >
-          Register
+          {textData.register}
         </button>
         <button
           style={{ backgroundColor: mainColor }}
@@ -87,24 +89,24 @@ export function LoginRegisterForm({
           id='login-btn'
           className={formType === 'login' ? 'active-form-btn' : 'switch-btn'}
         >
-          Login
+          {textData.login}
         </button>
       </div>
       <div id='form'>
-        <h4 className='label'>User name</h4>
+        <h4 className='label'>{textData.userName}</h4>
         <input id='nameInput' />
-        <h4 className='label'>Pasword</h4>
+        <h4 className='label'>{textData.password}</h4>
         <input id='passwordInput' type={'password'} />
         {formType === 'register' ? (
           <>
-            <h4 className='label'>Repeat Password</h4>
+            <h4 className='label'>{textData.repeatPassword}</h4>
             <input id='repeatPasswordInput' type={'password'} />
           </>
         ) : (
           <></>
         )}
       </div>
-      <button onClick={sendCredentialsToServer}>Send</button>
+      <button onClick={sendCredentialsToServer}>{textData.send}</button>
     </div>
   );
 }

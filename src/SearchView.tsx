@@ -2,7 +2,13 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import Select from 'react-select';
 import { AddingLine } from './AdminElements/AddingLine';
 import { darkColor, mainColor } from './Colors/colors';
-import { allTagsUrl, selectGamesUrl, tagsUrl } from './constants';
+import {
+  allTagsUrl,
+  getTextData,
+  searchGameUrl,
+  selectGamesUrl,
+  tagsUrl,
+} from './constants';
 import { GamesList } from './GamesList';
 import './styles/SearchView.css';
 import {
@@ -54,6 +60,7 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
       fontSize: '2.5vh',
     }),
   };
+  const searchTextData = getTextData().advancedSearch;
   return (
     <div id='search-view-wrapper' style={{ backgroundColor: mainColor }}>
       <div className='search-block'>
@@ -64,46 +71,46 @@ export function SearchView({ setCurrentView }: { setCurrentView: Function }) {
               options={tags}
               isMulti
               onChange={(options) => {
-                console.log('Selcted options', options);
                 setSelectedTags(options);
               }}
+              placeholder={searchTextData.select}
             />
           </div>
           <AddingLine
-            fieldName='Min mark'
+            fieldName={searchTextData.minMark}
             valueType='number'
             setResult={setMinMark}
             isVertical={false}
           />
           <AddingLine
-            fieldName='Min price'
+            fieldName={searchTextData.minPrice}
             valueType='number'
             setResult={setMinPrice}
             isVertical={false}
           />
           <AddingLine
-            fieldName='Max price'
+            fieldName={searchTextData.maxPrice}
             valueType='number'
             setResult={setMaxPrice}
             isVertical={false}
           />
           <AddingLine
-            fieldName='Min discount percent'
+            fieldName={searchTextData.minDiscountPercent}
             valueType='number'
             setResult={setMinDiscountPercent}
             isVertical={false}
           />
           <AddingLine
-            fieldName='Name part'
+            fieldName={searchTextData.namePart}
             isVertical={false}
             setResult={setNamePart}
           />
           <button id='selection-search-btn' onClick={search}>
-            Search
+            {searchTextData.search}
           </button>
         </div>
         <div id='selected-games'>
-          <h1 style={{ color: darkColor }}>Result</h1>
+          <h1 style={{ color: darkColor }}>{searchTextData.result}</h1>
           {games.length > 0 ? (
             <GamesList gamesRecords={games} setCurrentView={setCurrentView} />
           ) : (

@@ -96,6 +96,24 @@ function getTextData() {
           closeAddingForm: 'Закрыть форму',
           addComment: 'Добавить комментарий',
         },
+        advancedSearch: {
+          minMark: 'Мин оценка',
+          minPrice: 'Мин цена',
+          maxPrice: 'Макс цена',
+          minDiscountPercent: 'Мин процент скидки',
+          namePart: 'Часть имени',
+          search: 'Поиск',
+          select: 'Выбрать теги',
+          result: 'Результат',
+        },
+        auth: {
+          userName: 'Имя пользователя',
+          password: 'Пароль',
+          register: 'Заергистрироваться',
+          login: 'Войти',
+          send: 'Отправить',
+          repeatPassword: 'Повторить пароль',
+        },
       };
     default:
     case 'ENG':
@@ -156,6 +174,24 @@ function getTextData() {
           submitComment: 'Submit a comment',
           closeAddingForm: 'Close addingForm',
           addComment: 'Add a comment',
+        },
+        advancedSearch: {
+          minMark: 'Min mark',
+          minPrice: 'Min price',
+          maxPrice: 'Max price',
+          minDiscountPercent: 'Min discount percent',
+          namePart: 'Name part',
+          search: 'Search',
+          select: 'Select tags',
+          result: 'Result',
+        },
+        auth: {
+          userName: 'User name',
+          password: 'Password',
+          register: 'Register',
+          login: 'Login',
+          send: 'Send',
+          repeatPassword: 'Repeat password',
         },
       };
   }

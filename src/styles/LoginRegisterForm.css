@@ -11,12 +11,14 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 10px;
 }
 
 .switch-btn,.active-form-btn {
     background-position: top;
     height: 10vh;
-    width: 20vw;
+    width: 25vw;
+    min-width: fit-content;
     border: transparent;
     border-radius: 20px;
     background: transparent;
