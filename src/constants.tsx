@@ -89,6 +89,7 @@ function getTextData() {
             mostLiked: 'Больше всех лайков',
             highestDifference: 'Самые положительные',
           },
+          sendBtn: 'Отправить',
         },
         comment: {
           comment: 'Коммент',
@@ -168,6 +169,7 @@ function getTextData() {
             mostLiked: 'most liked',
             highestDifference: 'most positive',
           },
+          sendBtn: 'Send',
         },
         comment: {
           comment: 'Comment',

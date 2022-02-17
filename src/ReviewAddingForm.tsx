@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { secondaryColor } from './Colors/colors';
-import { authGetHeader, reviewsUrl } from './constants';
+import { authGetHeader, getTextData, reviewsUrl } from './constants';
 import './styles/ReviewAddingForm.css';
 export function ReviewAddingForm({
   loadReviews,
@@ -10,6 +10,7 @@ export function ReviewAddingForm({
   gameName: string;
 }) {
   const [isExpanded, setIsExpanded]: [boolean, Function] = useState(false);
+  const textData = getTextData().reviews;
   return (
     <div id='review-adding-form-wrapper'>
       <button
@@ -43,7 +44,7 @@ export function ReviewAddingForm({
               });
             }}
           >
-            Send
+            {textData.sendBtn}
           </button>
         </div>
       ) : (
