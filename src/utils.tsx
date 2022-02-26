@@ -106,7 +106,7 @@ export function removeUserStorageData() {
   localStorage.removeItem('password');
   localStorage.removeItem('userId');
 }
-interface selctedGamesInputParameter {
+interface selectedGamesInputParameter {
   tags?: string[];
   minMark?: number;
   minPrice?: number;
@@ -114,10 +114,11 @@ interface selctedGamesInputParameter {
   maxPrice?: number;
   minDiscountPercent?: number;
   sortType?: string;
+  limit?: number;
 }
 export function fetchAndSetSelectedGames(
   setGames: Function,
-  options: selctedGamesInputParameter
+  options: selectedGamesInputParameter
 ) {
   let {
     maxPrice,
@@ -127,6 +128,7 @@ export function fetchAndSetSelectedGames(
     namePart,
     tags,
     sortType,
+    limit,
   } = {
     ...options,
   };
@@ -152,10 +154,13 @@ export function fetchAndSetSelectedGames(
   if (!sortType) {
     sortType = '';
   }
+  if(!limit){
+    limit = 100;
+  }
   let url =
     `${selectGamesUrl}?tags=${tagsString}&minMark=${minMark}&minPrice=${minPrice}` +
     `&namePart=${namePart}&maxPrice=${maxPrice}&minDiscountPercent=${minDiscountPercent}` +
-    `&sortType=${sortType}`;
+    `&sortType=${sortType}&limit=${limit}`;
   fetch(url)
     .then((data) => data.json())
     .then((json) => {

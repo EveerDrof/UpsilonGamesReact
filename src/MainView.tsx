@@ -30,16 +30,21 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
       }
     }
   };
-
+  let iconsNumber = Math.floor(window.innerWidth/150);
+  if(iconsNumber < 8){
+    iconsNumber *=2;
+  }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     loadGameRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
     fetchAndSetSelectedGames(setDiscountedGames, {
       minDiscountPercent: 1,
       sortType: 'discount',
+      limit:iconsNumber
     });
     fetchAndSetSelectedGames(setTopRatedGames, {
       sortType: 'mark',
+      limit:iconsNumber
     });
   }, []);
   const isMobile = getIsMobile();
