@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Cabinet } from './Cabinet';
 import { gamesUrl, getTextData, searchGameUrl } from './constants';
 import { LoginRegister } from './LoginRegister';
@@ -156,7 +156,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           if (currentLanguage) {
             const currentLanguageIndex = languages.indexOf(currentLanguage);
             let nextLanguageIndex = currentLanguageIndex + 1;
-            if (nextLanguageIndex == languages.length) {
+            if (nextLanguageIndex === languages.length) {
               nextLanguageIndex = 0;
             }
             const newLanguage = languages[nextLanguageIndex];

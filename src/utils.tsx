@@ -71,7 +71,6 @@ export function loadPictures(
           .then((response) => response.blob())
           .then((blob) => {
             game.imageBlob = URL.createObjectURL(blob);
-            console.log('List', gamesList);
             setGameRecords([...(gamesList as Array<GameRecord>)]);
           });
       });
@@ -164,6 +163,7 @@ export function fetchAndSetSelectedGames(
   fetch(url)
     .then((data) => data.json())
     .then((json) => {
+      console.log(json);
       if (json && json.length > 0) {
         loadPictures(json, setGames);
       } else {
