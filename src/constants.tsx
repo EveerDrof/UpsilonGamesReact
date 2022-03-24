@@ -59,7 +59,7 @@ function getTextData() {
           mark: 'Оценка',
           description: 'Описание',
           tags: 'Теги',
-          buy: 'Купить',
+          buy: 'Добавить в корзину',
           uploadMark: 'Отправить оценку',
           yourMark: 'Ваша оценка',
           rateThisGame: 'Оцените эту игру',
@@ -76,7 +76,7 @@ function getTextData() {
         },
         cabinet: {
           greeting: 'Привет',
-          buyItems: 'Купить игры в корзине',
+          buyItems: 'Добавить игры в корзине в библиотеку',
           cart: 'Корзина',
           cartIsEmpty: 'Корзина пуста',
           library: 'Библиотека',
@@ -139,7 +139,7 @@ function getTextData() {
           description: 'Description',
           tags: 'Tags',
 
-          buy: 'Buy',
+          buy: 'Add to cart',
           uploadMark: 'Upload mark',
           yourMark: 'Your mark',
           rateThisGame: 'Rate this game',
@@ -156,7 +156,7 @@ function getTextData() {
         },
         cabinet: {
           greeting: 'Hi',
-          buyItems: 'Buy items in cart',
+          buyItems: 'Add items in cart to library',
           cart: 'Cart',
           cartIsEmpty: 'Cart is empty',
           library: 'Library',
