@@ -21,23 +21,37 @@
 #screenshots-carousel .carousel-root{
     max-height: 100vh;
 }
+#screenshots-carousel .carousel .slider-wrapper,#screenshots-carouse .carousel-root,#screenshots-carousel .carousel.carousel-slider{
+    height: auto;
+    max-height: 65vh;
+}
 #screenshots-carouse .carousel-root,#screenshots-carousel .carousel.carousel-slider{
-    max-height: 100%; 
     margin: 0px;
     padding: 0px;
-    height: 65vh;
+
+}
+#screenshots-carousel .carousel-root,#screenshots-carousel .carousel.carousel-slider{
+    max-width: 100%;
+    max-height: 100%;
 }
 .carousel .slider-wrapper{
     width: auto;
     height: 100%;
 }
-.carousel .slide img{
-    height: 100%;
+.carousel .slide{
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+#screenshots-carousel .carousel .slide img{
+    height: auto;
+    max-height: 65vh;
     width: auto;
 }
 .carousel .slider{
     width: auto;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
 }
 .carousel .thumbs{
     display: block;
