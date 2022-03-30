@@ -1,35 +1,50 @@
 
-#screenshots-carousel{
-    width: 100%;
-    height: auto;
-}
-#screenshots-carousel  * > img{
-    width: 100%;
-    height: auto;
-}
 .screenshot{
     height: 100%;
     max-height: 100%;
     max-width: 100%;
 }
 
-#screenshots-carousel .thumb .screenshot {
-    max-width: 100%; 
-    object-fit: cover;
-}
 #screenshots-carousel .thumb{
-    height: auto;
-    width: 20vw !important;
+    height: 20vh;
+    width: auto;
     max-height: 20vh;
 }
 #screenshots-carousel .carousel-root,#screenshots-carousel .carousel.carousel-slider{
-    height: 100%;
+    height: auto;
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
-#screenshots-carousel .carousel .slider-wrapper{
+#screenshots-carousel .thumb{
+    width: auto !important;
+}
+#screenshots-carousel .carousel-root{
+    max-height: 100vh;
+}
+#screenshots-carouse .carousel-root,#screenshots-carousel .carousel.carousel-slider{
+    max-height: 100%; 
     margin: 0px;
     padding: 0px;
+    height: 65vh;
+}
+.carousel .slider-wrapper{
+    width: auto;
+    height: 100%;
+}
+.carousel .slide img{
+    height: 100%;
+    width: auto;
+}
+.carousel .slider{
+    width: auto;
+    height: 100%;
+}
+.carousel .thumbs{
+    display: block;
+}
+.carousel .control-arrow{
+    opacity: 1 !important;
+    background: rgba(0,0,0,0.2) !important;
 }
 #top-info{
     display: flex;

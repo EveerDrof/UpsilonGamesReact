@@ -10,7 +10,11 @@ export function SteamReviewsBlock({
 }) {
   const textData = getTextData().steamReviewData;
   let reviewsElements: JSX.Element[] = [];
+    if(!steamReviewsData){
+    return <></>;
+  }
   let reviews = steamReviewsData.reviewsSiteObject.reviews;
+
   reviews?.forEach((val) => {
     reviewsElements.push(
       <h2
