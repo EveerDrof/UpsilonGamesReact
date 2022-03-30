@@ -28,7 +28,9 @@
 #screenshots-carouse .carousel-root,#screenshots-carousel .carousel.carousel-slider{
     margin: 0px;
     padding: 0px;
-
+}
+.thumb{
+    max-width: 20vw !important;
 }
 #screenshots-carousel .carousel-root,#screenshots-carousel .carousel.carousel-slider{
     max-width: 100%;
