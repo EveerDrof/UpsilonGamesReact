@@ -148,7 +148,10 @@ export function fetchAndSetSelectedGames(
   }
   let tagsString = '';
   if (tags) {
+    tags.push('game');
     tagsString = tags.join();
+  } else {
+    tagsString = 'game';
   }
   if (!sortType) {
     sortType = '';

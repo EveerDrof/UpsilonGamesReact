@@ -24,7 +24,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
   const advancedSearchName = getTextData().header.advancedSearch;
   function getSearchData(namePart: string) {
     let url =
-      `${searchGameUrl}?tags=&maxPrice=999999&minPrice=-1&minMark=-2&namePart=${namePart}` +
+      `${searchGameUrl}?tags=game&maxPrice=999999&minPrice=-1&minMark=-2&namePart=${namePart}` +
       `&minDiscountPercent=-2&sortType=&limit=999`;
     fetch(url)
       .then((data) => data.json())

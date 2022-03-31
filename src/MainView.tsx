@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GamesList } from './GamesList';
 import { Jumper } from './Jumper';
-import { getTextData, mainMenuGamesTopUrl, picturesUrl } from './constants';
+import { getTextData, mainMenuGamesTopUrl } from './constants';
 import { Carousel } from 'react-responsive-carousel';
 import {
   fetchAndSetSelectedGames,
@@ -36,7 +36,7 @@ export function MainView({ setCurrentView }: { setCurrentView: Function }) {
   }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
-    loadGameRecords(mainMenuGamesTopUrl, setMainMenuGamesRecords, null);
+    fetchAndSetSelectedGames(setMainMenuGamesRecords,{});
     fetchAndSetSelectedGames(setDiscountedGames, {
       minDiscountPercent: 1,
       sortType: 'discount',
