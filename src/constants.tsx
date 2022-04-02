@@ -1,6 +1,6 @@
 const picturesDir = '../pictures/';
 // const serverUrl = 'http://127.0.0.1:9005/';
-const serverUrl = 'http://upsilon.ddns.net/server/';
+const serverUrl = 'http://upsilongames.ddns.net/server/';
 const gamesUrl = serverUrl + 'games/';
 const mainMenuGamesTopUrl = serverUrl + 'games/allshort/';
 const picturesUrl = serverUrl + 'pictures/';
