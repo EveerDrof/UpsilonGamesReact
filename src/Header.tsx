@@ -144,7 +144,7 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
           onClick={logout}
           style={{ color: darkColor }}
         >
-          Logout
+          {textData.header.logout}
         </button>
       ) : (
         <></>

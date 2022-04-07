@@ -45,6 +45,7 @@ function getTextData() {
           cabinet: 'Кабинет',
           search: 'Поиск',
           advancedSearch: 'Продвинутый поиск',
+          logout : 'Выход',
         },
         main: {
           topRatedGames: 'Лучшие игры',
@@ -124,6 +125,7 @@ function getTextData() {
           cabinet: 'Cabinet',
           search: 'Search',
           advancedSearch: 'Advanced search',
+          logout : 'Logout',
         },
         main: {
           topRatedGames: 'Top rated games',
