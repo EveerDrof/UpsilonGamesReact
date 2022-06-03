@@ -148,15 +148,15 @@ export function fetchAndSetSelectedGames(
   }
   let tagsString = '';
   if (tags) {
-    tags.push('movie');
+    tags.push('game');
     tagsString = tags.join();
   } else {
-    tagsString = 'movie';
+    tagsString = 'game';
   }
   if (!sortType) {
     sortType = '';
   }
-  if(!limit){
+  if (!limit) {
     limit = 100;
   }
   let url =
