@@ -69,8 +69,11 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
   const textData = getTextData();
   return (
     <div id='header' style={{ backgroundColor: secondaryColor }}>
-      <button className='header-btn' style={{ color: darkColor }}>
-        <svg
+      <button
+        className='header-btn'
+        style={{ color: darkColor, height: '100%', width: '100%' }}
+      >
+        {/* <svg
           width='24'
           height='31'
           viewBox='0 0 24 31'
@@ -81,7 +84,13 @@ export function Header({ setCurrentView }: { setCurrentView: Function }) {
             d='M15.994 0L4.12148 15L5.15935 20L9.12148 22.5L15.1215 20.5L23.1215 4L20.6215 23L7.03335e-06 30.5L0.62149 10L15.994 0Z'
             fill='white'
           />
-        </svg>
+        </svg> */}
+        <div style={{ height: '100%', width: '100%' }}>
+          <img
+            style={{ height: '100%', width: '100%', objectFit: 'contain' }}
+            src='pictures/logo.svg'
+          />
+        </div>
       </button>
       <button
         style={{ color: darkColor }}

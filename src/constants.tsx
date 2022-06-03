@@ -45,11 +45,11 @@ function getTextData() {
           cabinet: 'Кабинет',
           search: 'Поиск',
           advancedSearch: 'Продвинутый поиск',
-          logout : 'Выход',
+          logout: 'Выход',
         },
         main: {
           topRatedGames: 'Лучшие игры',
-          sales: 'Скидки',
+          sales: 'Скидки на игры',
         },
         gameShortcut: {
           mark: 'Оценка',
@@ -125,7 +125,7 @@ function getTextData() {
           cabinet: 'Cabinet',
           search: 'Search',
           advancedSearch: 'Advanced search',
-          logout : 'Logout',
+          logout: 'Logout',
         },
         main: {
           topRatedGames: 'Top rated games',
